@@ -1,0 +1,14 @@
+PLACEHOLDER — replace with og-default.png
+
+Per-vertical default Open Graph card. Required for any article that doesn't
+specify its own `image` frontmatter.
+
+Recommended specs:
+- 1200 × 630 px
+- PNG or JPG, < 300 KB
+- Brand color background, site name + tagline, no small text
+
+Per-article OG images:
+- Set `image: "/og/<slug>.png"` in frontmatter
+- Place file at public/og/<slug>.png
+- Same 1200×630 spec

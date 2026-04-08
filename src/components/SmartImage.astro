@@ -1,0 +1,65 @@
+---
+/**
+ * SmartImage — thin wrapper around Astro's <Image> for use inside MDX articles.
+ *
+ * Why a wrapper:
+ *  - Enforces an explicit width/height (Astro requires this for remote images)
+ *  - Defaults to lazy loading + async decoding
+ *  - Allows passing a string URL OR an imported asset
+ *  - Centralized place to add CDN/optimization logic later (e.g. Vercel Image)
+ *
+ * Usage in MDX:
+ *   <SmartImage src="/screenshots/dashboard.png" alt="..." width={1200} height={680} />
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  src: string | ImageMetadata;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+  loading?: 'lazy' | 'eager';
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  caption,
+  loading = 'lazy',
+  class: className = '',
+} = Astro.props;
+---
+<figure class={`smart-image ${className}`}>
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding="async"
+    format="webp"
+  />
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .smart-image { margin: 1.5rem 0; }
+  .smart-image :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--gray-200, #E5E7EB);
+  }
+  .smart-image figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--gray-600, #4B5563);
+    text-align: center;
+    font-style: italic;
+  }
+</style>

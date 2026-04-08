@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import SearchBox from '../components/SearchBox.astro';
+import { site } from '../config/site';
+---
+<Base title="Search" description={`Search every review and guide on ${site.name}.`} noIndex={true}>
+  <section class="container" style="max-width:680px; padding:4rem 1.5rem;">
+    <h1 style="margin-bottom:.5rem;">Search</h1>
+    <p style="color:var(--gray-600); margin-bottom:2rem;">
+      Every review, comparison, and guide on {site.name}.
+    </p>
+    <SearchBox placeholder="Try 'CRM' or 'email automation'…" />
+  </section>
+</Base>

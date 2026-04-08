@@ -20,6 +20,11 @@ const baseFields = {
   affiliateDisclosure: z.boolean().default(true),
   draft: z.boolean().default(false),
   image: z.string().optional(),
+  // E-E-A-T reviewer fields — optional, used by <AuthorityBox /> in MDX
+  reviewer: z.string().optional(),
+  reviewerRole: z.string().optional(),
+  reviewerCredentials: z.array(z.string()).default([]),
+  lastReviewed: z.coerce.date().optional(),
 };
 
 const reviews = defineCollection({

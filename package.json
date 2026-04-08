@@ -8,6 +8,7 @@
     "build:redirects": "node scripts/build-redirects.mjs",
     "prebuild": "npm run build:redirects",
     "build": "astro build",
+    "postbuild": "pagefind --site dist --output-subdir _pagefind",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -15,5 +16,8 @@
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
     "astro": "^6.0.4"
+  },
+  "devDependencies": {
+    "pagefind": "^1.5.0"
   }
 }

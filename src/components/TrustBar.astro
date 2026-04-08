@@ -1,0 +1,88 @@
+---
+/**
+ * TrustBar — sitewide trust signal strip.
+ *
+ * Drop on the homepage or above the fold on any landing page. Each item is
+ * a number + label. Pulls default items from site config when none passed.
+ *
+ * Usage:
+ *   <TrustBar items={[
+ *     { number: '1K+', label: 'Tools evaluated' },
+ *     { number: '50+', label: 'Real deployments' }
+ *   ]} />
+ */
+interface Item {
+  number: string;
+  label: string;
+}
+interface Props {
+  items: Item[];
+  variant?: 'light' | 'dark';
+}
+const { items, variant = 'light' } = Astro.props;
+---
+<div class={`trust-bar trust-bar-${variant}`}>
+  {items.map((item, i) => (
+    <>
+      <div class="trust-item">
+        <span class="trust-number">{item.number}</span>
+        <span class="trust-label">{item.label}</span>
+      </div>
+      {i < items.length - 1 && <div class="trust-divider" aria-hidden="true"></div>}
+    </>
+  ))}
+</div>
+
+<style>
+  .trust-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 14px;
+    margin: 1.5rem 0;
+  }
+  .trust-bar-light {
+    background: var(--gray-50, #F9FAFB);
+    border: 1px solid var(--gray-200, #E5E7EB);
+  }
+  .trust-bar-dark {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+  }
+  .trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px;
+  }
+  .trust-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--brand, var(--teal));
+    line-height: 1.1;
+  }
+  .trust-bar-dark .trust-number { color: var(--brand-light, var(--teal-light, #4DB6AC)); }
+  .trust-label {
+    margin-top: .25rem;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gray-600, #4B5563);
+    font-weight: 600;
+  }
+  .trust-bar-dark .trust-label { color: rgba(255,255,255,0.7); }
+  .trust-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--gray-200, #E5E7EB);
+  }
+  .trust-bar-dark .trust-divider { background: rgba(255,255,255,0.15); }
+  @media (max-width: 640px) {
+    .trust-divider { display: none; }
+  }
+</style>

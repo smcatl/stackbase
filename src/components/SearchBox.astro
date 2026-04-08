@@ -1,0 +1,153 @@
+---
+/**
+ * SearchBox — instant client-side search powered by Pagefind.
+ *
+ * Pagefind indexes the built site at postbuild time and ships a tiny
+ * (~30KB) WASM-backed search UI. Zero server, zero database.
+ *
+ * Drop this anywhere — nav, sidebar, dedicated /search page.
+ */
+interface Props {
+  placeholder?: string;
+  /** Minimum chars before searching. */
+  minChars?: number;
+}
+const { placeholder = 'Search reviews and guides…', minChars = 2 } = Astro.props;
+---
+<div class="searchbox">
+  <input
+    type="search"
+    id="search-input"
+    placeholder={placeholder}
+    autocomplete="off"
+    aria-label="Search site"
+  />
+  <ul id="search-results" hidden></ul>
+</div>
+
+<script define:vars={{ minChars }}>
+  let pagefind;
+
+  async function loadPagefind() {
+    if (pagefind) return pagefind;
+    pagefind = await import(/* @vite-ignore */ '/_pagefind/pagefind.js');
+    await pagefind.options({ excerptLength: 25 });
+    return pagefind;
+  }
+
+  // Build a result <li> entirely with DOM methods so no untrusted HTML is
+  // ever inserted. Pagefind's excerpt contains <mark> tags for highlights,
+  // so we extract the plain text and rely on CSS for emphasis instead.
+  function buildResult(r) {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = r.url;
+
+    const strong = document.createElement('strong');
+    strong.textContent = r.meta?.title || r.url;
+    a.appendChild(strong);
+
+    const span = document.createElement('span');
+    // Strip any HTML from the excerpt — textContent handles this safely.
+    const tmp = document.createElement('div');
+    tmp.innerHTML = r.excerpt || '';
+    span.textContent = tmp.textContent || '';
+    a.appendChild(span);
+
+    li.appendChild(a);
+    return li;
+  }
+
+  function setup() {
+    const input = document.getElementById('search-input');
+    const list = document.getElementById('search-results');
+    if (!input || !list) return;
+
+    let timer;
+    input.addEventListener('input', async (e) => {
+      const q = e.target.value.trim();
+      clearTimeout(timer);
+      if (q.length < minChars) {
+        list.hidden = true;
+        list.replaceChildren();
+        return;
+      }
+      timer = setTimeout(async () => {
+        list.replaceChildren();
+        try {
+          const pf = await loadPagefind();
+          const search = await pf.search(q);
+          const top = await Promise.all(search.results.slice(0, 8).map((r) => r.data()));
+          top.forEach((r) => list.appendChild(buildResult(r)));
+          list.hidden = top.length === 0;
+        } catch (err) {
+          const li = document.createElement('li');
+          li.className = 'search-error';
+          li.textContent = 'Search index not built yet — run npm run build.';
+          list.appendChild(li);
+          list.hidden = false;
+        }
+      }, 150);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.searchbox')) list.hidden = true;
+    });
+  }
+
+  setup();
+  document.addEventListener('astro:after-swap', setup);
+</script>
+
+<style>
+  .searchbox { position: relative; }
+  .searchbox input {
+    width: 100%;
+    padding: .65rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--gray-200, #E5E7EB);
+    font-size: 0.95rem;
+    background: white;
+  }
+  .searchbox input:focus {
+    outline: none;
+    border-color: var(--brand, var(--teal));
+    box-shadow: 0 0 0 3px rgba(0,137,123,0.1);
+  }
+  #search-results {
+    position: absolute;
+    top: calc(100% + .25rem);
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--gray-200, #E5E7EB);
+    border-radius: 10px;
+    list-style: none;
+    margin: 0;
+    padding: .35rem;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    max-height: 60vh;
+    overflow-y: auto;
+    z-index: 100;
+  }
+  #search-results li { margin: 0; }
+  #search-results a {
+    display: block;
+    padding: .65rem .85rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: inherit;
+  }
+  #search-results a:hover { background: var(--gray-50, #F9FAFB); }
+  #search-results strong {
+    display: block;
+    color: var(--navy, #0D1F3C);
+    font-size: .95rem;
+    margin-bottom: .15rem;
+  }
+  #search-results span {
+    color: var(--gray-600, #4B5563);
+    font-size: .85rem;
+  }
+  .search-error { padding: .75rem; color: var(--gray-600, #4B5563); font-size: .85rem; }
+</style>

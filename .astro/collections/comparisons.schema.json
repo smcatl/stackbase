@@ -51,6 +51,23 @@
     "image": {
       "type": "string"
     },
+    "reviewer": {
+      "type": "string"
+    },
+    "reviewerRole": {
+      "type": "string"
+    },
+    "reviewerCredentials": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lastReviewed": {
+      "type": "string",
+      "format": "date-time"
+    },
     "products": {
       "minItems": 2,
       "type": "array",
