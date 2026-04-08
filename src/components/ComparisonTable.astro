@@ -1,0 +1,55 @@
+---
+interface Row {
+  feature: string;
+  values: (string | boolean)[];
+}
+interface Props {
+  columns: string[];
+  rows: Row[];
+}
+const { columns, rows } = Astro.props;
+
+function render(v: string | boolean) {
+  if (v === true) return '✓';
+  if (v === false) return '—';
+  return v;
+}
+---
+<div class="comparison-wrap">
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        {columns.map((c) => <th>{c}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((row) => (
+        <tr>
+          <td class="feature">{row.feature}</td>
+          {row.values.map((v) => <td>{render(v)}</td>)}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .comparison-wrap { overflow-x: auto; margin: 1.75rem 0; }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .comparison-table th, .comparison-table td {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--gray-200, #E5E7EB);
+  }
+  .comparison-table thead th {
+    background: var(--gray-50, #F9FAFB);
+    font-weight: 700;
+    color: var(--navy, #0A0F2C);
+  }
+  .comparison-table .feature { font-weight: 600; }
+</style>

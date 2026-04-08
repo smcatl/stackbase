@@ -1,9 +1,12 @@
 {
-  "name": "operatorstack",
+  "name": "stackbase",
   "type": "module",
   "version": "1.0.0",
+  "description": "Template repo for env-driven affiliate review sites built on Astro. Clone, set env vars, deploy.",
   "scripts": {
     "dev": "astro dev",
+    "build:redirects": "node scripts/build-redirects.mjs",
+    "prebuild": "npm run build:redirects",
     "build": "astro build",
     "preview": "astro preview"
   },

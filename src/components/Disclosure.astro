@@ -1,0 +1,39 @@
+---
+interface Props {
+  variant?: 'top' | 'footer';
+}
+const { variant = 'top' } = Astro.props;
+---
+{variant === 'top' && (
+  <div class="affiliate-disclosure-top">
+    <p>
+      <strong>Affiliate disclosure:</strong> This article contains affiliate links.
+      We may earn a commission if you purchase through them — at no extra cost to you.
+      We only recommend tools we've personally evaluated.
+      <a href="/affiliate-disclaimer">Full disclosure →</a>
+    </p>
+  </div>
+)}
+{variant === 'footer' && (
+  <div class="affiliate-disclosure-footer">
+    <p>
+      This article contains affiliate links. We may earn a commission if you purchase
+      through our links, at no extra cost to you. We only recommend tools we've
+      personally evaluated. <a href="/affiliate-disclaimer">Full disclosure policy →</a>
+    </p>
+  </div>
+)}
+
+<style>
+  .affiliate-disclosure-top {
+    background: #FFFBEB;
+    border: 1px solid #FCD34D;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: #78350F;
+  }
+  .affiliate-disclosure-top p { margin: 0; }
+  .affiliate-disclosure-top a { color: #78350F; text-decoration: underline; }
+</style>

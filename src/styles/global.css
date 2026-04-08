@@ -135,7 +135,7 @@ img { max-width: 100%; height: auto; display: block; }
   box-shadow: 0 4px 12px rgba(13,31,60,0.25);
 }
 
-.logo-bar { height: 4px; border-radius: 2px; background: #4DB6AC; display: block; }
+.logo-bar { height: 4px; border-radius: 2px; background: var(--teal-light); display: block; }
 .logo-bar-1 { width: 100%; }
 .logo-bar-2 { width: 65%; }
 .logo-bar-3 { width: 40%; opacity: 0.45; }
@@ -450,7 +450,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .hero h1 em {
   font-style: normal;
-  color: #4DB6AC;
+  color: var(--teal-light);
 }
 
 .hero-sub {
@@ -494,7 +494,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .stat-number em {
   font-style: normal;
-  color: #4DB6AC;
+  color: var(--teal-light);
   font-size: 1.75rem;
 }
 
@@ -849,11 +849,11 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: 14px;
   padding: 2rem 2.25rem;
   margin: 0 0 2rem;
-  border-left: 5px solid #4DB6AC;
+  border-left: 5px solid var(--teal-light);
 }
 
 .verdict-box h3 {
-  color: #4DB6AC;
+  color: var(--teal-light);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;

@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { site } from '../config/site';
 
 const featuredPosts = [
   {
@@ -28,7 +29,7 @@ const featuredPosts = [
   },
 ];
 ---
-<Base title="OperatorStack" description="Software reviews and tech stack advice for multi-location business operators. Written by an operator, for operators.">
+<Base title={site.name} description={site.description}>
 
   <!-- HERO -->
   <section class="hero">

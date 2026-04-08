@@ -3,11 +3,43 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "framework": "astro",
+  "redirects": [
+    {
+      "source": "/recommends/gohighlevel",
+      "destination": "https://www.gohighlevel.com/?fp_ref=example",
+      "permanent": false
+    },
+    {
+      "source": "/recommends/aweber",
+      "destination": "https://aweber.com/?id=example",
+      "permanent": false
+    },
+    {
+      "source": "/recommends/kinsta",
+      "destination": "https://kinsta.com/?kaid=example",
+      "permanent": false
+    }
+  ],
   "crons": [
-    { "path": "/api/publish-next", "schedule": "0 11 * * 1" },
-    { "path": "/api/publish-next", "schedule": "0 11 * * 2" },
-    { "path": "/api/publish-next", "schedule": "0 11 * * 3" },
-    { "path": "/api/publish-next", "schedule": "0 11 * * 4" },
-    { "path": "/api/refill-queue", "schedule": "0 13 * * 0" }
+    {
+      "path": "/api/publish-next",
+      "schedule": "0 11 * * 1"
+    },
+    {
+      "path": "/api/publish-next",
+      "schedule": "0 11 * * 2"
+    },
+    {
+      "path": "/api/publish-next",
+      "schedule": "0 11 * * 3"
+    },
+    {
+      "path": "/api/publish-next",
+      "schedule": "0 11 * * 4"
+    },
+    {
+      "path": "/api/refill-queue",
+      "schedule": "0 13 * * 0"
+    }
   ]
 }

@@ -1,0 +1,27 @@
+---
+interface Props {
+  rating: number;       // 0-5, half stars allowed
+  size?: 'sm' | 'md' | 'lg';
+  showNumber?: boolean;
+}
+const { rating, size = 'md', showNumber = true } = Astro.props;
+
+const full = Math.floor(rating);
+const half = rating - full >= 0.5;
+const empty = 5 - full - (half ? 1 : 0);
+const sizes = { sm: '0.95rem', md: '1.25rem', lg: '1.75rem' };
+---
+<span class="star-rating" style={`font-size:${sizes[size]};`} aria-label={`${rating} out of 5`}>
+  {Array.from({ length: full }, () => <span class="star full">★</span>)}
+  {half && <span class="star half">★</span>}
+  {Array.from({ length: empty }, () => <span class="star empty">★</span>)}
+  {showNumber && <span class="rating-number">{rating.toFixed(1)}</span>}
+</span>
+
+<style>
+  .star-rating { display: inline-flex; align-items: center; gap: 0.1em; }
+  .star.full { color: #F59E0B; }
+  .star.half { color: #F59E0B; opacity: 0.55; }
+  .star.empty { color: #E5E7EB; }
+  .rating-number { margin-left: 0.4em; font-size: 0.85em; color: var(--gray-600, #4B5563); font-weight: 600; }
+</style>

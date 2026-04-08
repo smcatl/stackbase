@@ -1,0 +1,39 @@
+---
+// Fixed-position reading progress bar — auto-tracks article scroll.
+---
+<div class="reading-progress" id="reading-progress" aria-hidden="true"></div>
+
+<style>
+  .reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: var(--brand, var(--teal));
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
+</style>
+
+<script>
+  function setup() {
+    const bar = document.getElementById('reading-progress');
+    const article = document.querySelector('.article-main');
+    if (!bar || !article) return;
+
+    const update = () => {
+      const rect = article.getBoundingClientRect();
+      const total = article.scrollHeight - window.innerHeight;
+      const scrolled = Math.min(Math.max(-rect.top, 0), total);
+      const pct = total > 0 ? (scrolled / total) * 100 : 0;
+      bar.style.width = pct + '%';
+    };
+
+    update();
+    document.addEventListener('scroll', update, { passive: true });
+  }
+
+  setup();
+  document.addEventListener('astro:after-swap', setup);
+</script>

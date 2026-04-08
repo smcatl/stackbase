@@ -1,6 +1,9 @@
 ---
 import Base from './Base.astro';
 import AuthorBio from '../components/AuthorBio.astro';
+import Disclosure from '../components/Disclosure.astro';
+import ReadingProgress from '../components/ReadingProgress.astro';
+import { site } from '../config/site';
 
 interface Props {
   title: string;
@@ -10,6 +13,13 @@ interface Props {
   category: string;
   readTime?: string;
   affiliateDisclosure?: boolean;
+  /** Optional review enrichment for Review/Product schema. */
+  review?: {
+    productName: string;
+    rating: number;       // 1-5
+    bestPrice?: string;
+    image?: string;
+  };
 }
 
 const {
@@ -20,6 +30,7 @@ const {
   category,
   readTime = '8 min read',
   affiliateDisclosure = true,
+  review,
 } = Astro.props;
 
 const formattedDate = new Date(publishDate).toLocaleDateString('en-US', {
@@ -29,13 +40,79 @@ const formattedDate = new Date(publishDate).toLocaleDateString('en-US', {
 const formattedUpdated = updatedDate
   ? new Date(updatedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
   : null;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  datePublished: publishDate,
+  dateModified: updatedDate ?? publishDate,
+  author: { '@type': 'Organization', name: site.author },
+  publisher: {
+    '@type': 'Organization',
+    name: site.name,
+    url: site.url,
+    logo: { '@type': 'ImageObject', url: new URL('/favicon.svg', site.url).toString() },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+};
+
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: site.url },
+    ...segments.map((seg, i) => ({
+      '@type': 'ListItem',
+      position: i + 2,
+      name: seg.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+      item: new URL('/' + segments.slice(0, i + 1).join('/'), site.url).toString(),
+    })),
+  ],
+};
+
+const reviewLd = review
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Review',
+      itemReviewed: {
+        '@type': 'Product',
+        name: review.productName,
+        ...(review.image ? { image: review.image } : {}),
+        ...(review.bestPrice ? { offers: { '@type': 'Offer', price: review.bestPrice, priceCurrency: 'USD' } } : {}),
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: review.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      author: { '@type': 'Organization', name: site.author },
+      datePublished: publishDate,
+    }
+  : null;
 ---
-<Base title={title} description={description} article={true} publishDate={publishDate}>
+<Base
+  title={title}
+  description={description}
+  article={true}
+  publishDate={publishDate}
+  updatedDate={updatedDate}
+>
+  <ReadingProgress />
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+  {reviewLd && <script type="application/ld+json" set:html={JSON.stringify(reviewLd)} />}
+
   <article>
-    <!-- Article Hero -->
     <header class="article-hero">
       <div class="article-hero-inner">
-        <span class={`tag tag-teal`}>{category}</span>
+        <span class="tag tag-teal">{category}</span>
         <h1 style="margin-top:.75rem;">{title}</h1>
         <p style="font-size:1.1rem; color:var(--gray-600); margin-top:.75rem; max-width:600px;">{description}</p>
         <div class="article-meta">
@@ -52,9 +129,9 @@ const formattedUpdated = updatedDate
       </div>
     </header>
 
-    <!-- Article Body -->
     <div class="article-layout">
       <div class="article-main">
+        {affiliateDisclosure && <Disclosure variant="top" />}
 
         <div class="prose">
           <slot />
@@ -62,12 +139,7 @@ const formattedUpdated = updatedDate
 
         <AuthorBio />
 
-        {affiliateDisclosure && (
-          <div class="affiliate-disclosure-footer">
-            <p>This article contains affiliate links. We may earn a commission if you purchase through our links, at no extra cost to you. We only recommend tools we've personally evaluated. <a href="/affiliate-disclaimer">Full disclosure policy →</a></p>
-          </div>
-        )}
-
+        {affiliateDisclosure && <Disclosure variant="footer" />}
       </div>
       <aside class="article-sidebar">
         <div class="sidebar-toc" id="sidebar-toc">
@@ -86,9 +158,7 @@ const formattedUpdated = updatedDate
         const ul = document.createElement('ul');
 
         headings.forEach((heading, i) => {
-          if (!heading.id) {
-            heading.id = 'section-' + i;
-          }
+          if (!heading.id) heading.id = 'section-' + i;
           const li = document.createElement('li');
           const a = document.createElement('a');
           a.href = '#' + heading.id;

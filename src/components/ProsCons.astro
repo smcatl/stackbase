@@ -1,0 +1,37 @@
+---
+interface Props {
+  pros: string[];
+  cons: string[];
+}
+const { pros, cons } = Astro.props;
+---
+<div class="pros-cons">
+  <div class="pros">
+    <h4>Pros</h4>
+    <ul>{pros.map((p) => <li>{p}</li>)}</ul>
+  </div>
+  <div class="cons">
+    <h4>Cons</h4>
+    <ul>{cons.map((c) => <li>{c}</li>)}</ul>
+  </div>
+</div>
+
+<style>
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 1.75rem 0;
+  }
+  .pros, .cons {
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .pros { background: #ECFDF5; border: 1px solid #A7F3D0; }
+  .cons { background: #FEF2F2; border: 1px solid #FECACA; }
+  .pros h4 { color: #065F46; margin: 0 0 .5rem; }
+  .cons h4 { color: #991B1B; margin: 0 0 .5rem; }
+  .pros ul, .cons ul { margin: 0; padding-left: 1.1rem; }
+  .pros li, .cons li { margin: .35rem 0; font-size: .95rem; }
+  @media (max-width: 640px) { .pros-cons { grid-template-columns: 1fr; } }
+</style>

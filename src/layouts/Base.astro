@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { site, pageTitle } from '../config/site';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -7,18 +9,42 @@ interface Props {
   image?: string;
   article?: boolean;
   publishDate?: string;
+  updatedDate?: string;
+  noIndex?: boolean;
 }
 
 const {
   title,
-  description = 'Software reviews and tech stack advice for multi-location business operators. Written by an operator, for operators.',
+  description = site.description,
   image = '/og-default.png',
   article = false,
   publishDate,
+  updatedDate,
+  noIndex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const fullTitle = title === 'OperatorStack' ? title : `${title} | OperatorStack`;
+const fullTitle = pageTitle(title);
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: site.url,
+  logo: new URL('/favicon.svg', site.url).toString(),
+};
+
+const websiteLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  url: site.url,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${site.url}/?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -26,16 +52,30 @@ const fullTitle = title === 'OperatorStack' ? title : `${title} | OperatorStack`
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
-  <meta name="google-site-verification" content="YJ4WNnBR7-05X8AGySjYFxupxqYEbKJHbdiQzypmUOM" />
-  <meta name='impact-site-verification' value='561ccd06-5876-4052-bc2f-f8241d6ed78f'>
+  {site.googleVerification && (
+    <meta name="google-site-verification" content={site.googleVerification} />
+  )}
+  {site.impactVerification && (
+    <meta name="impact-site-verification" value={site.impactVerification} />
+  )}
+
+  <!-- Brand color override — pulled from env via site config -->
+  <style is:inline define:vars={{ brandAccent: site.accentColor, brandAccentLight: site.accentColorLight }}>
+    :root {
+      --teal: var(--brandAccent);
+      --teal-light: var(--brandAccentLight);
+      --brand: var(--brandAccent);
+      --brand-light: var(--brandAccentLight);
+    }
+  </style>
 
   <!-- Primary SEO -->
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
-  <meta name="robots" content="index, follow" />
-  <meta name="author" content="OperatorStack Team" />
-  <link rel="alternate" type="application/rss+xml" title="OperatorStack" href="/rss.xml" />
+  <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow'} />
+  <meta name="author" content={site.author} />
+  <link rel="alternate" type="application/rss+xml" title={site.name} href="/rss.xml" />
 
   <!-- Open Graph -->
   <meta property="og:type" content={article ? 'article' : 'website'} />
@@ -43,8 +83,9 @@ const fullTitle = title === 'OperatorStack' ? title : `${title} | OperatorStack`
   <meta property="og:description" content={description} />
   <meta property="og:image" content={new URL(image, Astro.site)} />
   <meta property="og:url" content={canonical} />
-  <meta property="og:site_name" content="OperatorStack" />
+  <meta property="og:site_name" content={site.name} />
   {publishDate && <meta property="article:published_time" content={publishDate} />}
+  {updatedDate && <meta property="article:modified_time" content={updatedDate} />}
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -61,34 +102,32 @@ const fullTitle = title === 'OperatorStack' ? title : `${title} | OperatorStack`
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
-  <!-- Privacy-friendly analytics by Plausible -->
-  <script async src="https://plausible.io/js/pa-n8m5EVSDYXZmAG5JJHI42.js"></script>
-  <script>
-    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-    plausible.init()
-  </script>
-
-  <!-- Schema.org -->
-  {article && (
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": title,
-      "description": description,
-      "image": new URL(image, Astro.site).toString(),
-      "datePublished": publishDate,
-      "publisher": {
-        "@type": "Organization",
-        "name": "OperatorStack",
-        "url": "https://operatorstack.tech"
-      }
-    })} />
+  <!-- Plausible analytics -->
+  {site.plausibleScript && (
+    <>
+      <script async src={site.plausibleScript}></script>
+      <script is:inline>
+        window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+        plausible.init()
+      </script>
+    </>
   )}
 
-  <script async src="https://utt.impactcdn.com/P-A7084916-fa6b-4d4d-bbc5-732708ed352c1.js"></script>
-  <script is:inline>
-  (function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)}('https://utt.impactcdn.com/P-A7084916-fa6b-4d4d-bbc5-732708ed352c1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');
-  </script>
+  <!-- Site-wide structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(websiteLd)} />
+
+  <!-- Impact affiliate link tracking -->
+  {site.impactCdnId && (
+    <>
+      <script async src={`https://utt.impactcdn.com/${site.impactCdnId}.js`}></script>
+      <script is:inline define:vars={{ impactCdnId: site.impactCdnId }}>
+        (function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)}('https://utt.impactcdn.com/'+impactCdnId+'.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');
+      </script>
+    </>
+  )}
+
+  <ClientRouter />
 </head>
 <body>
 
@@ -102,16 +141,16 @@ const fullTitle = title === 'OperatorStack' ? title : `${title} | OperatorStack`
           <div class="logo-bar logo-bar-3"></div>
         </div>
         <span class="nav-logo-text">
-          <span class="logo-word-1">Operator</span>
-          <span class="logo-word-2">Stack</span>
+          <span class="logo-word-1">{site.brandWord1}</span>
+          <span class="logo-word-2">{site.brandWord2}</span>
         </span>
       </a>
       <ul class="nav-links">
-        <li><a href="/reviews">Reviews</a></li>
-        <li><a href="/comparisons">Comparisons</a></li>
-        <li><a href="/guides">Guides</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/start-here" class="nav-cta">Start Here →</a></li>
+        <li><a href="/reviews" data-astro-prefetch>Reviews</a></li>
+        <li><a href="/comparisons" data-astro-prefetch>Comparisons</a></li>
+        <li><a href="/guides" data-astro-prefetch>Guides</a></li>
+        <li><a href="/about" data-astro-prefetch>About</a></li>
+        <li><a href="/start-here" class="nav-cta" data-astro-prefetch>Start Here →</a></li>
       </ul>
     </div>
   </nav>
@@ -131,31 +170,32 @@ const fullTitle = title === 'OperatorStack' ? title : `${title} | OperatorStack`
             <div class="logo-bar logo-bar-3"></div>
           </div>
           <span class="nav-logo-text">
-            <span class="logo-word-1" style="color:rgba(255,255,255,0.85);">Operator</span>
-            <span class="logo-word-2" style="color:#4DB6AC;">Stack</span>
+            <span class="logo-word-1" style="color:rgba(255,255,255,0.85);">{site.brandWord1}</span>
+            <span class="logo-word-2" style={`color:${site.accentColorLight};`}>{site.brandWord2}</span>
           </span>
         </a>
-        <p>Software reviews and tech stack advice written by a multi-location operator with thousands of venues deployed. No fluff, no hype — just what actually works.</p>
+        <p>{site.tagline}</p>
       </div>
-      <div class="footer-col">
-        <h5>Reviews</h5>
-        <ul>
-          <li><a href="/reviews/gohighlevel">GoHighLevel</a></li>
-          <li><a href="/reviews/convertkit">ConvertKit</a></li>
-          <li><a href="/reviews/kinsta">Kinsta</a></li>
-          <li><a href="/reviews/thinkific">Thinkific</a></li>
-          <li><a href="/reviews">All Reviews →</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Guides</h5>
-        <ul>
-          <li><a href="/guides/operator-tech-stack">My Tech Stack</a></li>
-          <li><a href="/guides/automate-onboarding">Automate Onboarding</a></li>
-          <li><a href="/guides/crm-for-operators">CRM for Operators</a></li>
-          <li><a href="/guides">All Guides →</a></li>
-        </ul>
-      </div>
+      {site.footerReviews.length > 0 && (
+        <div class="footer-col">
+          <h5>Reviews</h5>
+          <ul>
+            {site.footerReviews.map((l) => (
+              <li><a href={l.href}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {site.footerGuides.length > 0 && (
+        <div class="footer-col">
+          <h5>Guides</h5>
+          <ul>
+            {site.footerGuides.map((l) => (
+              <li><a href={l.href}>{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      )}
       <div class="footer-col">
         <h5>Site</h5>
         <ul>
@@ -167,13 +207,22 @@ const fullTitle = title === 'OperatorStack' ? title : `${title} | OperatorStack`
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© {new Date().getFullYear()} OperatorStack. All rights reserved.</span>
+      <span>© {new Date().getFullYear()} {site.name}. All rights reserved.</span>
       <span>
         <a href="/affiliate-disclaimer">Affiliate Disclosure</a> ·
         <a href="/privacy">Privacy Policy</a>
       </span>
     </div>
   </footer>
+
+  <!-- Outbound affiliate click tracking via Plausible -->
+  <script is:inline>
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a[data-affiliate]');
+      if (!a || typeof window.plausible !== 'function') return;
+      window.plausible('Affiliate Click', { props: { slug: a.dataset.affiliate || a.href } });
+    });
+  </script>
 
 </body>
 </html>
