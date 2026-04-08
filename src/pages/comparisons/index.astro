@@ -1,0 +1,63 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const comparisons = [
+  {
+    title: 'GoHighLevel vs HubSpot',
+    excerpt: 'Two completely different tools for the same problem. Which one wins for operators managing multiple locations?',
+    href: '/comparisons/gohighlevel-vs-hubspot',
+    winner: 'GHL for operators',
+  },
+  {
+    title: 'ConvertKit vs AWeber',
+    excerpt: 'Both offer lifetime recurring commissions. Both are solid email tools. Here\'s how to choose.',
+    href: '/comparisons/convertkit-vs-aweber',
+    winner: 'AWeber for operators',
+  },
+  {
+    title: 'Thinkific vs Teachable',
+    excerpt: 'Two course platforms, two different strengths. Which one wins for operator training and partner education?',
+    href: '/comparisons/thinkific-vs-teachable',
+    winner: 'Thinkific for operators',
+  },
+  {
+    title: 'Kinsta vs SiteGround',
+    excerpt: 'Premium vs value hosting. When is the Kinsta price premium worth it for operator sites?',
+    href: '/comparisons/kinsta-vs-siteground',
+    winner: 'Kinsta for performance',
+  },
+];
+---
+<Base
+  title="Software Comparisons for Operators — OperatorStack"
+  description="Head-to-head software comparisons written for multi-location operators. CRM, email, hosting, and more."
+>
+  <div style="background:var(--gray-50); border-bottom:1px solid var(--gray-200); padding:4rem 1.5rem 3rem;">
+    <div class="container">
+      <p class="section-label">Comparisons</p>
+      <h1 style="margin-bottom:.75rem;">Head-to-Head Comparisons</h1>
+      <p style="font-size:1.05rem; color:var(--gray-600); max-width:560px;">
+        Operator-focused head-to-head breakdowns. We pick a winner and explain exactly why.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="card-grid">
+        {comparisons.map(c => (
+          <a href={c.href} class="post-card">
+            <div class="post-card-body">
+              <span class="post-card-tag">Comparison</span>
+              <h3>{c.title}</h3>
+              <p>{c.excerpt}</p>
+              <div style="margin-top:auto; padding-top:.75rem;">
+                <span class="tag tag-teal">Winner: {c.winner}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>

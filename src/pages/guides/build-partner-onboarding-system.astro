@@ -1,0 +1,264 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+
+<Article
+  title="How to Build a Partner Onboarding System That Runs Itself"
+  description="The exact tools and workflow for automating partner onboarding across thousands of venues -- GoHighLevel, PandaDoc, Tally, and Zapier working together."
+  publishDate="2026-04-02"
+  category="Automation Guide"
+  readTime="12 min read"
+>
+
+<div class="verdict-box">
+  <h3>What You'll Build</h3>
+  <p>A fully automated partner onboarding system that takes a new venue from intake form submission to signed contract to active deployment -- without you touching anything manually. This is the exact system running across my 50+ venue our operation, built with GoHighLevel, PandaDoc, Tally, and Zapier.</p>
+</div>
+
+<div class="toc">
+  <h4>Table of Contents</h4>
+  <ol>
+    <li><a href="#why-automate">Why Automate Onboarding</a></li>
+    <li><a href="#tools">The 4 Tools You Need</a></li>
+    <li><a href="#step-1">Step 1: Intake Form (Tally)</a></li>
+    <li><a href="#step-2">Step 2: CRM Entry (Zapier + GHL)</a></li>
+    <li><a href="#step-3">Step 3: Welcome Sequence (GHL)</a></li>
+    <li><a href="#step-4">Step 4: Proposal (PandaDoc)</a></li>
+    <li><a href="#step-5">Step 5: Contract Signed (PandaDoc + Zapier)</a></li>
+    <li><a href="#step-6">Step 6: Onboarding Automation (GHL)</a></li>
+    <li><a href="#step-7">Step 7: Scheduling (GHL Calendar)</a></li>
+    <li><a href="#step-8">Step 8: Go Live (GHL)</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#build-yours">Build Yours</a></li>
+  </ol>
+</div>
+
+<h2 id="why-automate">Why Automate Partner Onboarding</h2>
+
+At 5 venues, I onboarded partners manually. Welcome email (manually written). Follow-up (manually remembered). Proposal (manually built in Google Docs). Contract (separately sent via DocuSign). Scheduling (back-and-forth emails). Training (live video call). Status tracking (spreadsheet).
+
+At 15 venues, balls were dropping constantly. Partners waited days for follow-ups. Proposals sat unsigned because nobody followed up. Installation scheduling was a mess of email threads.
+
+At thousands of venues, manual onboarding is impossible. The automated system I built handles every step from first contact to active deployment without my intervention. I review the pipeline once daily, handle exceptions, and let the system run.
+
+<p><strong>The result:</strong> Average onboarding time dropped from 14 days to 5 days. Close rate improved 25%. And I spend roughly 30 minutes per week on onboarding that used to consume 10+ hours.</p>
+
+<h2 id="tools">The 4 Tools You Need</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Role</th>
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Tally</strong></td>
+      <td>Intake forms</td>
+      <td>Free</td>
+    </tr>
+    <tr>
+      <td><strong>Zapier</strong></td>
+      <td>Connects everything</td>
+      <td>$49/mo</td>
+    </tr>
+    <tr>
+      <td><strong>GoHighLevel</strong></td>
+      <td>CRM, automation, email, scheduling</td>
+      <td>$297/mo</td>
+    </tr>
+    <tr>
+      <td><strong>PandaDoc</strong></td>
+      <td>Proposals, contracts, e-signatures</td>
+      <td>$49/mo</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Total cost: $395/mo</strong> for a system that handles unlimited partner onboarding across unlimited locations.</p>
+
+<h2 id="step-1">Step 1: Intake Form (Tally)</h2>
+
+The entry point for every new partner is a Tally intake form. Tally is free, supports conditional logic, file uploads, and -- critically -- webhooks that trigger the rest of the system.
+
+<p><strong>My intake form collects:</strong></p>
+<ul>
+  <li>Business name and type (restaurant, salon, gym, etc.)</li>
+  <li>Contact name, email, and phone</li>
+  <li>Number of locations</li>
+  <li>Address of primary location</li>
+  <li>Current WiFi setup (if any)</li>
+  <li>Monthly foot traffic estimate</li>
+  <li>How they heard about us</li>
+</ul>
+
+The form lives on a branded landing page (built in GoHighLevel's funnel builder) and linked from our website. Partners can also receive the link directly via email or SMS.
+
+<p><strong>Key setup:</strong> Enable Tally's webhook integration. This fires a POST request to Zapier with all form data whenever someone submits. The webhook is available on Tally's free tier -- no upgrade needed.</p>
+
+<a href="https://operatorstack.tech/recommends/tally" class="affiliate-cta">
+  Try Tally Free &rarr;
+</a>
+
+<h2 id="step-2">Step 2: CRM Entry (Zapier + GoHighLevel)</h2>
+
+When the Tally form submits, the webhook fires to Zapier. The Zap:
+
+<p>1. <strong>Catches the webhook</strong> from Tally with all form data</p>
+<p>2. <strong>Creates a contact</strong> in GoHighLevel with name, email, phone, and business details mapped to custom fields</p>
+<p>3. <strong>Applies tags</strong> -- "New Lead", venue type tag (e.g., "Restaurant"), and source tag (e.g., "Website Form")</p>
+<p>4. <strong>Creates an opportunity</strong> in the Onboarding Pipeline at the "New Lead" stage</p>
+<p>5. <strong>Sends a Slack notification</strong> to me with the new lead details</p>
+
+<p><strong>Total Zapier tasks per submission:</strong> 4 (contact creation + tags + opportunity + Slack). At roughly 10-15 new inquiries per month, this Zap uses about 60 tasks monthly.</p>
+
+The moment this Zap fires, the partner exists in my CRM with all their information, assigned to the onboarding pipeline, and ready for automated follow-up. Zero manual data entry.
+
+<a href="https://operatorstack.tech/recommends/zapier" class="affiliate-cta">
+  Try Zapier Free &rarr;
+</a>
+
+<h2 id="step-3">Step 3: Welcome Sequence (GoHighLevel)</h2>
+
+The contact creation in Step 2 triggers a GHL workflow automatically. The welcome sequence:
+
+<p><strong>Immediately:</strong> Send a personalized welcome email confirming we received their inquiry. Includes a brief overview of our program and what to expect next.</p>
+
+<p><strong>1 hour later:</strong> Send an SMS introducing myself and asking if they have any immediate questions. SMS gets 90%+ open rates. This touchpoint builds rapport.</p>
+
+<p><strong>24 hours later:</strong> Send an email with a case study relevant to their venue type (restaurant case study for restaurants, salon case study for salons -- selected via tags applied in Step 2).</p>
+
+<p><strong>48 hours later:</strong> If the opportunity hasn't moved from "New Lead" stage (meaning they haven't responded), send a follow-up email asking if they'd like to schedule a quick call. Include a GHL calendar booking link.</p>
+
+This 4-touch sequence runs entirely without my involvement. Most partners respond after the SMS (message 2) or the case study email (message 3).
+
+<h2 id="step-4">Step 4: Proposal (PandaDoc)</h2>
+
+When a partner is qualified (via call or email exchange), I move their deal to "Proposal" stage in GHL. This is currently the one manual step -- I review the conversation, confirm the deployment scope, and generate the PandaDoc proposal.
+
+<p><strong>The PandaDoc process:</strong></p>
+
+1. Open my deployment agreement template in PandaDoc
+2. Fill in venue-specific details (Custom Variables auto-populate from CRM data via Zapier)
+3. Customize the pricing table if needed (standard pricing is pre-built in the template)
+4. Send with one click
+
+PandaDoc's document analytics show me when the partner opens the proposal, which pages they spend time on, and whether they've viewed the pricing section. This intelligence shapes my follow-up timing and approach.
+
+<p><strong>Automated follow-up:</strong> If the document is viewed but not signed within 48 hours, PandaDoc sends an automatic reminder. If still unsigned after 5 days, a Zapier workflow triggers a personal follow-up email from GHL.</p>
+
+<a href="https://operatorstack.tech/recommends/pandadoc" class="affiliate-cta">
+  Try PandaDoc Free &rarr;
+</a>
+
+<h2 id="step-5">Step 5: Contract Signed (PandaDoc + Zapier)</h2>
+
+When the partner signs the PandaDoc agreement, a webhook fires to Zapier. The Zap:
+
+<p>1. <strong>Updates the GHL opportunity</strong> -- moves deal to "Signed" stage</p>
+<p>2. <strong>Applies "Signed Partner" tag</strong> to the contact</p>
+<p>3. <strong>Creates a Monday.com board</strong> from the deployment template (optional but valuable at scale)</p>
+<p>4. <strong>Sends a Slack notification</strong> with the signed deal details</p>
+<p>5. <strong>Triggers the GHL onboarding workflow</strong> (Step 6)</p>
+
+From the partner's perspective: they signed a document. Behind the scenes: their deal moved, their account got tagged, a project board was created, the team was notified, and an 8-step onboarding sequence just started -- all in about 3 seconds.
+
+<h2 id="step-6">Step 6: Onboarding Automation (GoHighLevel)</h2>
+
+The "Signed" stage triggers the core onboarding workflow in GHL. This is the 8-step sequence that runs every new venue through the same proven process:
+
+<p>1. <strong>Contract confirmation email</strong> -- congratulations, here's a copy of your signed agreement, here's what happens next</p>
+<p>2. <strong>Equipment order notification</strong> (internal) -- task created for hardware team to order venue-specific equipment</p>
+<p>3. <strong>Site survey scheduling</strong> -- email with calendar link to book the pre-installation site survey (2 days after signing)</p>
+<p>4. <strong>Pre-survey checklist</strong> -- sent 24 hours before survey appointment with what we need from the venue</p>
+<p>5. <strong>Post-survey follow-up</strong> -- sent after survey appointment with timeline and installation date confirmation</p>
+<p>6. <strong>Pre-installation email</strong> -- sent 48 hours before scheduled installation with preparation instructions</p>
+<p>7. <strong>Post-installation check-in</strong> -- sent 3 days after installation to confirm everything is working</p>
+<p>8. <strong>14-day check-in</strong> -- sent 14 days after go-live with initial performance data and next steps</p>
+
+Each step includes wait conditions, so the sequence respects timing. If a venue books their survey quickly, the sequence moves faster. If they delay, reminders fire at appropriate intervals.
+
+<h2 id="step-7">Step 7: Scheduling (GoHighLevel Calendar)</h2>
+
+All scheduling runs through GHL's built-in calendar. Survey appointments, installation scheduling, and kickoff calls all use calendar booking links embedded in the automated emails.
+
+<p><strong>Benefits of GHL Calendar over standalone tools:</strong></p>
+
+<ul>
+  <li>Booking data stays in the CRM -- no separate Calendly or Acuity account</li>
+  <li>Appointment bookings trigger workflow actions automatically</li>
+  <li>Reminder emails and SMS send from GHL without additional configuration</li>
+  <li>Calendar availability syncs with Google Calendar to prevent double-booking</li>
+</ul>
+
+<h2 id="step-8">Step 8: Go Live (GoHighLevel)</h2>
+
+When installation is complete and the venue's WiFi system is active, I move the deal to "Live" stage. This triggers the final automation:
+
+<p>1. <strong>Go-live confirmation email</strong> to the venue with their dashboard login and quick-start guide</p>
+<p>2. <strong>Tag update</strong> -- "Active Venue" applied, "Onboarding" removed</p>
+<p>3. <strong>Monthly reporting workflow activated</strong> -- automated performance emails begin on a 30-day cycle</p>
+<p>4. <strong>30-day review request</strong> -- SMS requesting a Google review, sent 30 days after go-live</p>
+<p>5. <strong>Renewal pipeline entry</strong> -- opportunity created in the Renewal pipeline with the contract end date</p>
+
+The venue is now fully onboarded, receiving automated performance reports, and tracked for renewal. The entire journey from intake form to active venue ran on 4 tools and required about 15 minutes of my actual time.
+
+<h2 id="results">Results: Before and After</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Before (Manual)</th>
+      <th>After (Automated)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Avg. onboarding time</td>
+      <td>14 days</td>
+      <td>5 days</td>
+    </tr>
+    <tr>
+      <td>Close rate</td>
+      <td>~40%</td>
+      <td>~65%</td>
+    </tr>
+    <tr>
+      <td>My time per venue</td>
+      <td>10+ hours</td>
+      <td>~15 minutes</td>
+    </tr>
+    <tr>
+      <td>Dropped follow-ups</td>
+      <td>Frequent</td>
+      <td>Zero</td>
+    </tr>
+    <tr>
+      <td>Consistency across venues</td>
+      <td>Variable</td>
+      <td>Identical</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="build-yours">Build Your Own</h2>
+
+<div class="verdict-box">
+  <h3>Start With These 4 Tools</h3>
+  <p>You don't need to build everything at once. Start with Steps 1-3: Tally form → Zapier → GoHighLevel contact creation and welcome sequence. That alone eliminates manual data entry and ensures every new inquiry gets immediate follow-up. Add PandaDoc for proposals when you're ready. Add the full onboarding workflow as you refine your process. The system grows as your operation grows.</p>
+</div>
+
+<a href="https://www.gohighlevel.com/?fp_ref=stosh61" class="affiliate-cta" style="margin-top:2rem;">
+  Try GoHighLevel Free for 30 Days &rarr;
+</a>
+
+<div class="callout callout-green" style="margin-top:2.5rem;">
+  <strong>Want the full tool breakdown?</strong> See the complete
+  <a href="/guides/operator-tech-stack">Operator Tech Stack</a> for every tool I use with exact costs, or learn how
+  <a href="/guides/gohighlevel-snapshots">GHL Snapshots</a> let you clone this entire system to new locations in minutes.
+</div>
+
+</Article>

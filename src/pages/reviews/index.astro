@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const reviews = [
+  {
+    tag: 'CRM',
+    title: "GoHighLevel Review 2026: An Operator's Honest Take",
+    excerpt: "I've deployed CRMs across thousands of venues. Here's why GHL finally replaced our entire stack -- and three things that still frustrate me.",
+    href: '/reviews/gohighlevel',
+    date: 'Mar 13, 2026',
+    readTime: '12 min',
+  },
+  {
+    tag: 'Email',
+    title: 'ConvertKit Review 2026: The Email Platform Built for Operators',
+    excerpt: 'After testing six email platforms, ConvertKit is the one I kept. Best deliverability in class and a free tier that actually works.',
+    href: '/reviews/convertkit',
+    date: 'Mar 14, 2026',
+    readTime: '11 min',
+  },
+  {
+    tag: 'Hosting',
+    title: 'Kinsta Review 2026: Is the Premium Price Worth It?',
+    excerpt: "I moved three business sites to Kinsta after years on SiteGround. The performance difference is real. Here's the honest breakdown.",
+    href: '/reviews/kinsta',
+    date: 'Mar 14, 2026',
+    readTime: '10 min',
+  },
+  {
+    tag: 'Courses',
+    title: 'Thinkific Review 2026: Best Course Platform for Operator Training?',
+    excerpt: 'After building a partner training program across thousands of venues, Thinkific is the platform that scaled. Here is the honest breakdown.',
+    href: '/reviews/thinkific',
+    date: 'Mar 17, 2026',
+    readTime: '10 min',
+  },
+  {
+    tag: 'Email',
+    title: 'AWeber Review 2026: 25 Years of Email Marketing -- Still Worth It?',
+    excerpt: 'Battle-tested deliverability and 50% lifetime affiliate commissions. After testing six platforms, here is where AWeber fits.',
+    href: '/reviews/aweber',
+    date: 'Mar 18, 2026',
+    readTime: '10 min',
+  },
+  {
+    tag: 'Contracts',
+    title: 'PandaDoc Review 2026: The Contract Tool That Replaced DocuSign for Us',
+    excerpt: 'Proposals, contracts, and e-signatures in one platform. How PandaDoc runs thousands of venue partner agreements with document analytics.',
+    href: '/reviews/pandadoc',
+    date: 'Mar 24, 2026',
+    readTime: '10 min',
+  },
+  {
+    tag: 'Automation',
+    title: 'Zapier Review 2026: The Automation Tool Every Operator Needs',
+    excerpt: 'The connective tissue of every operator stack. How 15 active Zaps run thousands of automated actions across thousands of venues.',
+    href: '/reviews/zapier',
+    date: 'Mar 31, 2026',
+    readTime: '10 min',
+  },
+  {
+    tag: 'Project Mgmt',
+    title: 'Monday.com Review 2026: Project Management for Operators',
+    excerpt: 'Template-based project management for repeatable multi-location operations. Venue deployments, franchise openings, and cross-location tracking.',
+    href: '/reviews/monday',
+    date: 'Apr 1, 2026',
+    readTime: '9 min',
+  },
+];
+---
+<Base
+  title="Software Reviews for Operators -- OperatorStack"
+  description="Honest software reviews written from the perspective of a multi-location operator. CRM, email, hosting, automation, and more."
+>
+  <div style="background:var(--gray-50); border-bottom:1px solid var(--gray-200); padding:4rem 1.5rem 3rem;">
+    <div class="container">
+      <p class="section-label">Reviews</p>
+      <h1 style="margin-bottom:.75rem;">Software Reviews for Operators</h1>
+      <p style="font-size:1.05rem; color:var(--gray-600); max-width:560px;">
+        Every review is based on actual deployment experience across real business locations -- not a free trial or a press kit.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="card-grid">
+        {reviews.map(review => (
+          <a href={review.href} class="post-card" style={review.href === '#' ? 'opacity:.6; cursor:default;' : ''}>
+            <div class="post-card-body">
+              <span class="post-card-tag">{review.tag}</span>
+              <h3>{review.title}</h3>
+              <p>{review.excerpt}</p>
+              <div class="post-card-meta">
+                <span>{review.date}</span>
+                {review.readTime && <><span>·</span><span>{review.readTime}</span></>}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>

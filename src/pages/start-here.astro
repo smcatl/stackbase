@@ -1,0 +1,82 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Start Here — Your OperatorStack Guide"
+  description="New to OperatorStack? Start here. The best reviews, guides, and tools for multi-location operators — organized by what you actually need."
+>
+
+  <div style="background:var(--navy); padding:4rem 1.5rem 3rem; text-align:center; position:relative; overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 0%,rgba(0,137,123,.3) 0%,transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative; max-width:640px; margin:0 auto;">
+      <span class="tag tag-teal" style="margin-bottom:1rem; display:inline-block;">New Here?</span>
+      <h1 style="color:white; margin-bottom:1rem;">Start Here</h1>
+      <p style="color:rgba(255,255,255,.7); font-size:1.1rem;">
+        Our team has collectively managed thousands of business locations.
+        OperatorStack is where we share what actually works for running multi-location operations.
+        Here's the best place to start.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container" style="max-width:800px;">
+
+      <!-- Step 1 -->
+      <div style="display:flex; gap:1.5rem; margin-bottom:3rem; align-items:flex-start;">
+        <div style="width:48px; height:48px; background:var(--navy); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <span style="color:var(--teal-light); font-family:var(--font-display); font-weight:800; font-size:1.1rem;">1</span>
+        </div>
+        <div>
+          <h2 style="margin-bottom:.5rem;">Get the Free Operator's Toolkit</h2>
+          <p>Before anything else — grab the free PDF. It's 12 tools stack-ranked for multi-location operators, with exact pricing and what each one replaces. Most operators save $400–$1,200/mo by consolidating after reading it.</p>
+          <a href="/operator-toolkit" class="btn btn-teal">Download Free Toolkit →</a>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="display:flex; gap:1.5rem; margin-bottom:3rem; align-items:flex-start;">
+        <div style="width:48px; height:48px; background:var(--teal); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <span style="color:white; font-family:var(--font-display); font-weight:800; font-size:1.1rem;">2</span>
+        </div>
+        <div>
+          <h2 style="margin-bottom:.5rem;">Read My Full Tech Stack</h2>
+          <p>Every tool I pay for monthly — CRM, email, automation, network management, billing, and IoT tracking. I list the exact monthly cost, what it replaced, and whether I'd recommend it for operators at different scales.</p>
+          <a href="/guides/operator-tech-stack" class="btn btn-outline">See My Stack →</a>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="display:flex; gap:1.5rem; margin-bottom:3rem; align-items:flex-start;">
+        <div style="width:48px; height:48px; background:var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <span style="color:white; font-family:var(--font-display); font-weight:800; font-size:1.1rem;">3</span>
+        </div>
+        <div>
+          <h2 style="margin-bottom:.5rem;">Pick Your Biggest Problem</h2>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
+            {[
+              { problem: 'I need a CRM that handles multiple locations', href: '/reviews/gohighlevel' },
+              { problem: 'I want to automate client onboarding', href: '/guides/build-partner-onboarding-system' },
+              { problem: 'I\'m comparing GoHighLevel vs HubSpot', href: '/comparisons/gohighlevel-vs-hubspot' },
+              { problem: 'I need better email marketing', href: '/guides/best-email-marketing' },
+              { problem: 'I want to understand GHL Snapshots', href: '/guides/gohighlevel-snapshots' },
+              { problem: 'I need WiFi management for venues', href: '/guides/best-wifi-management' },
+            ].map(item => (
+              <a href={item.href} class="card" style="text-decoration:none; font-size:.9rem; color:var(--blue); font-weight:500; padding:1rem 1.25rem;">
+                → {item.problem}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- About -->
+      <div class="card" style="background:var(--gray-50); border:1px solid var(--gray-200); margin-top:1rem;">
+        <h3 style="margin-bottom:.75rem;">About Us</h3>
+        <p style="margin-bottom:0;">We're operators, not bloggers. Our team has collectively managed thousands of business locations across restaurants, gyms, salons, and service businesses. We've built onboarding automation, operational systems, and partner management from scratch. OperatorStack exists because we couldn't find tech advice written for people like us. <a href="/about">Full story →</a></p>
+      </div>
+
+    </div>
+  </div>
+
+</Base>

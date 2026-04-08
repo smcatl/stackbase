@@ -1,0 +1,259 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+
+<Article
+  title="GoHighLevel Snapshots: The Feature That Makes Multi-Location Management Possible"
+  description="A deep dive into GoHighLevel Snapshots -- what they are, how to build one, and how I use them to deploy proven systems across thousands of venues in minutes."
+  publishDate="2026-04-01"
+  category="CRM Guide"
+  readTime="8 min read"
+>
+
+<div class="verdict-box">
+  <h3>Bottom Line</h3>
+  <p>Snapshots are the single feature that makes GoHighLevel a category of one for multi-location operators. They capture your entire sub-account configuration and deploy it to new accounts in about 3 minutes. No other CRM platform has an equivalent. If you manage multiple locations, Snapshots alone justify the $297/mo Agency Unlimited subscription.</p>
+</div>
+
+<div class="toc">
+  <h4>Table of Contents</h4>
+  <ol>
+    <li><a href="#what-are-snapshots">What Are Snapshots?</a></li>
+    <li><a href="#what-they-capture">What Snapshots Capture</a></li>
+    <li><a href="#how-to-build">How to Build a Snapshot</a></li>
+    <li><a href="#my-snapshot">Our Snapshot</a></li>
+    <li><a href="#deployment">Deploying to New Locations</a></li>
+    <li><a href="#best-practices">Best Practices</a></li>
+    <li><a href="#limitations">Limitations</a></li>
+    <li><a href="#verdict">Why This Changes Everything</a></li>
+  </ol>
+</div>
+
+<h2 id="what-are-snapshots">What Are Snapshots?</h2>
+
+A Snapshot is a complete copy of a GoHighLevel sub-account's configuration. Think of it as a system backup that you can deploy to any new sub-account. Everything you've built -- pipelines, workflows, email templates, funnel pages, custom fields, tags, calendars, forms, automations -- gets packaged into a single Snapshot that deploys in minutes.
+
+<p><strong>The analogy:</strong> Snapshots are to GoHighLevel what disk images are to IT deployment. Instead of manually configuring every new computer, you build a master image once and clone it infinitely. Snapshots do the same thing for your business systems.</p>
+
+<p><strong>Availability:</strong> Snapshots are available on the Agency Unlimited plan ($297/mo) and SaaS Pro plan ($497/mo). They are not available on the Starter plan.</p>
+
+<h2 id="what-they-capture">What Snapshots Capture</h2>
+
+A Snapshot includes:
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Included</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Pipelines</strong></td>
+      <td>Yes</td>
+      <td>All stages, automations, and configurations</td>
+    </tr>
+    <tr>
+      <td><strong>Workflows</strong></td>
+      <td>Yes</td>
+      <td>Every trigger, action, and branch</td>
+    </tr>
+    <tr>
+      <td><strong>Email templates</strong></td>
+      <td>Yes</td>
+      <td>All designs and content</td>
+    </tr>
+    <tr>
+      <td><strong>SMS templates</strong></td>
+      <td>Yes</td>
+      <td>All message templates</td>
+    </tr>
+    <tr>
+      <td><strong>Funnels</strong></td>
+      <td>Yes</td>
+      <td>All pages, forms, and designs</td>
+    </tr>
+    <tr>
+      <td><strong>Websites</strong></td>
+      <td>Yes</td>
+      <td>Full site builder pages</td>
+    </tr>
+    <tr>
+      <td><strong>Custom fields</strong></td>
+      <td>Yes</td>
+      <td>Contact, opportunity, and custom object fields</td>
+    </tr>
+    <tr>
+      <td><strong>Custom values</strong></td>
+      <td>Yes</td>
+      <td>Dynamic values used in templates</td>
+    </tr>
+    <tr>
+      <td><strong>Tags</strong></td>
+      <td>Yes</td>
+      <td>All tag definitions</td>
+    </tr>
+    <tr>
+      <td><strong>Calendars</strong></td>
+      <td>Yes</td>
+      <td>All calendar configurations</td>
+    </tr>
+    <tr>
+      <td><strong>Forms</strong></td>
+      <td>Yes</td>
+      <td>All form designs and integrations</td>
+    </tr>
+    <tr>
+      <td><strong>Triggers</strong></td>
+      <td>Yes</td>
+      <td>All trigger configurations</td>
+    </tr>
+    <tr>
+      <td><strong>Social planner settings</strong></td>
+      <td>Yes</td>
+      <td>Post templates and configurations</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>What Snapshots do NOT include:</strong></p>
+
+<ul>
+  <li>Contact data (contacts are location-specific, not transferable)</li>
+  <li>Conversation history</li>
+  <li>Media files uploaded to the media library</li>
+  <li>Connected integrations (Twilio, Mailgun, Stripe -- these must be configured per sub-account)</li>
+  <li>Domain settings (sending domains, custom domains)</li>
+</ul>
+
+<h2 id="how-to-build">How to Build a Snapshot</h2>
+
+Building a Snapshot is straightforward, but building a <em>good</em> Snapshot requires thinking systematically about what should be standardized across all locations.
+
+<h3>Step 1: Build your master sub-account</h3>
+
+Create one sub-account that represents your ideal location setup. This is your "golden" account -- the one you'll clone everywhere. Take your time here. Every pipeline stage, every workflow branch, every email template should be exactly how you want it across all locations.
+
+<h3>Step 2: Use custom values for location-specific data</h3>
+
+Anywhere your templates reference location-specific information (business name, address, phone number, booking link), use GHL Custom Values instead of hardcoding. When you deploy the Snapshot to a new sub-account, you update the Custom Values once and every template, email, and workflow that references them updates automatically.
+
+<p><strong>Example Custom Values:</strong></p>
+<ul>
+  <li><code>&#123;&#123;custom_values.business_name&#125;&#125;</code> → "OperatorStack - Downtown"</li>
+  <li><code>&#123;&#123;custom_values.business_address&#125;&#125;</code> → "123 Main St, Atlanta, GA"</li>
+  <li><code>&#123;&#123;custom_values.business_phone&#125;&#125;</code> → "(404) 555-0100"</li>
+  <li><code>&#123;&#123;custom_values.booking_link&#125;&#125;</code> → "https://app.ghl.com/booking/downtown"</li>
+</ul>
+
+<h3>Step 3: Test everything in the master account</h3>
+
+Before snapshotting, run through every workflow, every funnel, and every email template. Submit test forms, trigger test automations, send test emails. Fix anything that's broken. Once you Snapshot, that broken workflow gets cloned to every new location.
+
+<h3>Step 4: Create the Snapshot</h3>
+
+Navigate to Agency View → Snapshots → Create New Snapshot. Select your master sub-account. Choose which components to include (usually all of them). Name it clearly -- "OperatorStack Master v3.2 - March 2026" -- with version and date so you can track iterations.
+
+<h3>Step 5: Version control</h3>
+
+GHL doesn't have native version control for Snapshots. I maintain my own system: every time I update my master account, I create a new Snapshot with an incremented version number and date. I keep the previous version as a rollback option. A simple spreadsheet tracks what changed in each version.
+
+<h2 id="my-snapshot">Our Snapshot: What's Inside</h2>
+
+Here's exactly what my master Snapshot includes -- the system running across thousands of venue sub-accounts:
+
+<h3>Pipelines (3)</h3>
+
+<ul>
+  <li><strong>Venue Onboarding</strong> -- stages: Lead → Qualified → Proposal Sent → Signed → Equipment Ordered → Installed → Live → Active</li>
+  <li><strong>Support</strong> -- stages: New Ticket → In Progress → Waiting on Venue → Resolved</li>
+  <li><strong>Renewal</strong> -- stages: Upcoming Renewal → Contacted → Renewed → Churned</li>
+</ul>
+
+<h3>Workflows (12)</h3>
+
+<ul>
+  <li>New venue intake (triggered by Tally form via Zapier)</li>
+  <li>Welcome email sequence (3 emails over 7 days)</li>
+  <li>Proposal follow-up (triggered when deal moves to "Proposal Sent")</li>
+  <li>Signed contract onboarding (8-step sequence)</li>
+  <li>Installation scheduling (appointment booking + reminders)</li>
+  <li>Post-installation check-in (day 3 and day 14)</li>
+  <li>Monthly performance report email</li>
+  <li>Review request (SMS, triggered 30 days after installation)</li>
+  <li>Renewal reminder sequence (starts 60 days before contract end)</li>
+  <li>Support ticket acknowledgment</li>
+  <li>Churn prevention (triggered when deal moves to "Churned")</li>
+  <li>Re-engagement (for inactive venues)</li>
+</ul>
+
+<h3>Email Templates (15)</h3>
+
+Welcome email, proposal cover letter, contract confirmation, installation scheduling, pre-installation checklist, post-installation check-in (×2), monthly report template, review request, renewal reminder (×3), support acknowledgment, churn survey, and re-engagement offer.
+
+<h3>Funnel Pages (3)</h3>
+
+Venue intake landing page, partner referral page, and WiFi analytics demo page.
+
+<h3>Custom Fields (8)</h3>
+
+Venue type, square footage, number of access points, ISP provider, installation date, contract end date, monthly revenue, and partner referral source.
+
+<p><strong>Total deployment time for a new venue:</strong> about 3 minutes to load the Snapshot, 5 minutes to update Custom Values with location-specific details. The entire proven system is live and running in under 10 minutes.</p>
+
+<h2 id="deployment">Deploying a Snapshot to New Locations</h2>
+
+When a new venue signs, the deployment process is:
+
+<p>1. <strong>Create a new sub-account</strong> in the Agency dashboard</p>
+<p>2. <strong>Load the master Snapshot</strong> into the new sub-account (3 minutes)</p>
+<p>3. <strong>Update Custom Values</strong> -- business name, address, phone, booking link (5 minutes)</p>
+<p>4. <strong>Configure integrations</strong> -- connect Twilio for SMS, set up sending domain for email (10 minutes)</p>
+<p>5. <strong>Verify</strong> -- spot-check key workflows and templates to ensure Custom Values populated correctly (5 minutes)</p>
+
+<p><strong>Total time: ~25 minutes.</strong> Compare that to the 4-6 hours it used to take to manually build out pipelines, write emails, configure automations, and set up funnels for each new venue. At thousands of venues, Snapshots have saved me hundreds of hours.</p>
+
+<h2 id="best-practices">Snapshot Best Practices</h2>
+
+<p><strong>1. Use Custom Values religiously.</strong> Any text that changes between locations should be a Custom Value, not hardcoded text. This includes business name, address, phone, email, booking links, and any location-specific URLs.</p>
+
+<p><strong>2. Name your Snapshots with versions and dates.</strong> "Master v3.2 - March 2026" is useful. "Master Snapshot" is not. You'll create dozens of iterations over time.</p>
+
+<p><strong>3. Maintain a changelog.</strong> Track what changed in each Snapshot version. When something breaks in a deployed sub-account, you need to know which version it's running and what's changed since.</p>
+
+<p><strong>4. Test before deploying.</strong> Every new Snapshot version should be deployed to a test sub-account first. Run through the critical workflows before pushing to production venues.</p>
+
+<p><strong>5. Don't over-customize per location.</strong> The whole point of Snapshots is standardization. If every venue has custom workflows, you've lost the leverage. Keep 90%+ of the system identical across locations and handle exceptions with tags and conditional workflow branches.</p>
+
+<p><strong>6. Update existing locations when you improve the master.</strong> When you create a better workflow in your master account, don't just Snapshot it for new venues. Update existing venues too. This is manual in GHL (no push-to-all feature), but keeping venues in sync prevents drift.</p>
+
+<h2 id="limitations">Limitations to Know</h2>
+
+<ul>
+  <li><strong>No push updates.</strong> You can't push Snapshot changes to existing sub-accounts. Updating 50 venues with a workflow change means updating each one manually. This is GHL's biggest Snapshot limitation.</li>
+  <li><strong>No partial Snapshots.</strong> You can't Snapshot just one workflow and deploy it. It's all-or-nothing (though you can choose which categories to include).</li>
+  <li><strong>Integration setup is manual.</strong> Each sub-account needs its own Twilio, Mailgun, and Stripe connections configured. Snapshots don't transfer these.</li>
+  <li><strong>No diff view.</strong> You can't compare two Snapshot versions to see what changed. Hence the changelog recommendation.</li>
+  <li><strong>Media not included.</strong> Images, logos, and uploaded files don't transfer. You'll need to upload venue-specific branding to each sub-account.</li>
+</ul>
+
+<h2 id="verdict">Why This Changes Everything for Operators</h2>
+
+<div class="verdict-box">
+  <h3>Snapshots are the moat</h3>
+  <p>No other CRM platform offers anything equivalent to Snapshots. HubSpot can export some assets between portals. Salesforce has sandbox environments. But no platform lets you capture an entire operating system -- every pipeline, workflow, email, funnel, field, and tag -- and deploy it to a new account in 3 minutes. For operators who need to replicate proven systems across many locations, Snapshots make GHL the only serious choice. The $297/mo Agency Unlimited subscription pays for itself the first time you deploy a new location in 10 minutes instead of 6 hours.</p>
+</div>
+
+<a href="https://www.gohighlevel.com/?fp_ref=stosh61" class="affiliate-cta" style="margin-top:2rem;">
+  Try GoHighLevel Free for 30 Days &rarr;
+</a>
+
+<div class="callout callout-blue" style="margin-top:2.5rem;">
+  <strong>New to GoHighLevel?</strong> Start with the full
+  <a href="/reviews/gohighlevel">GoHighLevel Review 2026</a> or see
+  <a href="/guides/gohighlevel-pricing">GHL Pricing Explained</a> to understand which tier you need.
+</div>
+
+</Article>

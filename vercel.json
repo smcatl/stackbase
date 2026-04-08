@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "astro",
+  "crons": [
+    { "path": "/api/publish-next", "schedule": "0 11 * * 1" },
+    { "path": "/api/publish-next", "schedule": "0 11 * * 2" },
+    { "path": "/api/publish-next", "schedule": "0 11 * * 3" },
+    { "path": "/api/publish-next", "schedule": "0 11 * * 4" },
+    { "path": "/api/refill-queue", "schedule": "0 13 * * 0" }
+  ]
+}

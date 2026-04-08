@@ -1,0 +1,199 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+<Article
+  title="The Operator's Tech Stack: 8 Tools That Run My Business"
+  description="Every tool I pay for monthly across CRM, email, automation, networking, and billing -- with exact costs, what each replaces, and whether I'd recommend it for operators at your scale."
+  publishDate="2026-03-13"
+  category="Guide"
+  readTime="9 min read"
+>
+
+<div class="verdict-box">
+  <h3>What You'll Get From This</h3>
+  <p>My exact monthly software spend across 8 tools, what each one does in my operation, what I tried before (and why I switched), and honest recommendations for operators at different scales.</p>
+</div>
+
+<div class="callout callout-gold">
+  <strong>Total Monthly Stack Cost</strong>
+  $524/mo across 8 tools -- replacing what used to be $1,200+/mo across 14 disconnected platforms. Here's what I cut and what I kept.
+</div>
+
+<div class="toc">
+  <h4>Table of Contents</h4>
+  <ol>
+    <li><a href="#crm">CRM & Automation: GoHighLevel</a></li>
+    <li><a href="#email">Email Marketing: ConvertKit</a></li>
+    <li><a href="#wifi">Network Management: Ubiquiti UniFi</a></li>
+    <li><a href="#hosting">Hosting: Kinsta</a></li>
+    <li><a href="#forms">Forms & Intake: Tally</a></li>
+    <li><a href="#docs">Documents: PandaDoc</a></li>
+    <li><a href="#billing">Billing: Stripe</a></li>
+    <li><a href="#analytics">Analytics: Plausible</a></li>
+    <li><a href="#total">The Full Stack at a Glance</a></li>
+  </ol>
+</div>
+
+<h2>CRM & Automation: <a href="/reviews/gohighlevel">GoHighLevel</a> ($297/mo)</h2>
+
+<p><strong>What it replaced:</strong> ActiveCampaign ($149), Calendly ($16), a basic phone system ($45), and about 4 hours/week of manual follow-up work.</p>
+
+GoHighLevel runs our entire partner onboarding workflow. Every new venue partner flows through a GHL pipeline -- intake form submission triggers automated document generation, calendar booking, contract send, and a 7-step follow-up sequence. Zero manual work after the form is submitted.
+
+<p>The <strong>Snapshots</strong> feature is what makes it irreplaceable for multi-location operators. One snapshot clones the entire onboarding system to a new sub-account in 3 minutes. We have separate sub-accounts for each partner tier.</p>
+
+<p><strong>Would I recommend it?</strong> Yes, for operators with 5+ partner relationships or 3+ locations. Overkill below that.</p>
+
+<a href="https://operatorstack.tech/recommends/gohighlevel" class="affiliate-cta">
+  Try GoHighLevel Free (30 Days) →
+  <small>Affiliate link -- we earn 40% recurring if you sign up</small>
+</a>
+
+<h2>Email Marketing: ConvertKit ($79/mo for our list size)</h2>
+
+<p><strong>What it replaced:</strong> Mailchimp ($99/mo, worse deliverability, clunky automations).</p>
+
+ConvertKit handles our partner newsletter, lead nurture sequences, and broadcast emails. The tagging system is genuinely excellent -- we tag partners by tier, location type, and onboarding stage, then send targeted sequences based on tags.
+
+The automation is cleaner than anything else I've used at this price point. Sequences are visual, logic-based, and easy to edit without breaking things.
+
+<p><strong>Would I recommend it?</strong> Yes, across the board. It's the right email platform for operators building lists from 0 to 50,000 subscribers.</p>
+
+<a href="https://www.aweber.com/easy-email.htm?id=560455" class="affiliate-cta">
+  Start ConvertKit Free (Up to 10,000 Subs) →
+  <small>Affiliate link -- we earn 30% recurring if you upgrade</small>
+</a>
+
+<h2>Network Management: Ubiquiti UniFi (Hardware + $0/mo cloud)</h2>
+
+<p><strong>What it replaced:</strong> Consumer routers at venue locations ($15–$40/device, unmanageable at scale).</p>
+
+We deploy Ubiquiti UniFi access points at every our partner venue. The UniFi Network app is free -- no subscription -- and lets us manage all access points, create SSID configurations, monitor usage, and push firmware updates from one dashboard.
+
+For WiFi data offloading specifically, Ubiquiti is the only choice that gives us the RADIUS authentication and captive portal flexibility we need to create the SYH (AT&T) and SYX (T-Mobile) certificate networks at scale.
+
+<p><strong>Hardware cost:</strong> $129–$299/AP depending on model. Ongoing cost: $0 for cloud management (with UniFi Cloud Key or self-hosted controller).</p>
+
+<a href="https://operatorstack.tech/recommends/ubiquiti" class="affiliate-cta">
+  Shop Ubiquiti UniFi Equipment →
+  <small>Affiliate link -- Amazon Associates program</small>
+</a>
+
+<h2>Hosting: <a href="/reviews/kinsta">Kinsta</a> ($35/mo)</h2>
+
+<p><strong>What it replaced:</strong> Shared hosting that was slow and constantly needed maintenance.</p>
+
+Kinsta runs our business site on Google Cloud infrastructure with automatic SSL, daily backups, and a CDN. Load times are consistently under 1 second. For an operator site that needs to look credible to potential partners, performance matters.
+
+The affiliate program is a bonus -- we earn $50–$500 upfront plus 10% recurring for every operator we refer who signs up.
+
+<p><strong>Would I recommend it?</strong> Yes for any operator-facing business site. No if you're on a tight budget -- SiteGround at $22/mo is a solid alternative.</p>
+
+<a href="https://operatorstack.tech/recommends/kinsta" class="affiliate-cta">
+  Start with Kinsta Hosting →
+  <small>Affiliate link -- we earn 10% recurring + upfront bounty</small>
+</a>
+
+<h2>Forms & Intake: Tally ($29/mo)</h2>
+
+<p><strong>What it replaced:</strong> Typeform ($50/mo), JotForm (too complex for what we needed).</p>
+
+Tally runs every intake form across our operation -- new partner applications, venue assessment forms, equipment requests, and support tickets. The Notion-like editor is fast to use, the conditional logic is solid, and Zapier integration pushes submissions into GHL automatically.
+
+Cost/value ratio is unmatched in the forms category.
+
+<h2>Documents: <a href="/reviews/pandadoc">PandaDoc</a> ($49/mo)</h2>
+
+<p><strong>What it replaced:</strong> DocuSign ($45/mo, limited template features) and manually emailed PDFs.</p>
+
+Every partner agreement, venue addendum, and equipment lease flows through PandaDoc. Templates with merge fields, e-signature collection, and automatic notifications when documents are viewed and signed. GHL triggers document sends automatically when a partner reaches the right pipeline stage.
+
+<h2>Billing: Stripe ($0/mo + 2.9% + $0.30 per transaction)</h2>
+
+No monthly fee. Stripe handles all partner billing, equipment deposits, and subscription payments. The API integrates directly into our automated billing flows.
+
+Nothing to recommend here -- Stripe is the default and the right choice for most operators.
+
+<h2>Analytics: Plausible ($9/mo)</h2>
+
+<p><strong>What it replaced:</strong> Google Analytics (free but required cookie consent banners, GDPR complexity, and is increasingly blocked by privacy tools).</p>
+
+Plausible gives clean traffic data -- pageviews, sources, top pages, conversions -- without cookies, without a consent banner, and without sharing visitor data with Google. GDPR compliant by default. The dashboard loads in under a second.
+
+For any operator running a business site, Plausible is the right analytics call. The $9/mo is worth it to get out of the Google Analytics complexity entirely.
+
+<h2>The Full Stack at a Glance</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Monthly Cost</th>
+      <th>Category</th>
+      <th>Affiliate?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GoHighLevel (Agency Unlimited)</td>
+      <td>$297</td>
+      <td>CRM / Automation</td>
+      <td>Yes -- 40% lifetime</td>
+    </tr>
+    <tr>
+      <td>ConvertKit</td>
+      <td>$79</td>
+      <td>Email Marketing</td>
+      <td>Yes -- 30% lifetime</td>
+    </tr>
+    <tr>
+      <td>Ubiquiti UniFi</td>
+      <td>$0 (hardware upfront)</td>
+      <td>Network Management</td>
+      <td>Yes -- Amazon</td>
+    </tr>
+    <tr>
+      <td>Kinsta</td>
+      <td>$35</td>
+      <td>Hosting</td>
+      <td>Yes -- 10% lifetime</td>
+    </tr>
+    <tr>
+      <td>Tally</td>
+      <td>$29</td>
+      <td>Forms</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>PandaDoc</td>
+      <td>$49</td>
+      <td>Documents</td>
+      <td>Yes -- revenue share</td>
+    </tr>
+    <tr>
+      <td>Stripe</td>
+      <td>$0 + %</td>
+      <td>Billing</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Plausible</td>
+      <td>$9</td>
+      <td>Analytics</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><strong>Total</strong></td>
+      <td><strong>$498/mo</strong></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout callout-teal">
+  <strong>Want the Free Toolkit?</strong>
+  Get this stack ranked and annotated as a PDF -- plus 4 additional tools I recommend but don't personally use -- free when you join the OperatorStack list. <a href="/operator-toolkit">Get it here →</a>
+</div>
+
+</Article>

@@ -1,0 +1,218 @@
+---
+import Article from '../../layouts/Article.astro';
+---
+<Article
+  title="How to Automate Client Onboarding: The Operator's 8-Step System"
+  description="I onboard new venue partners across thousands of locations without touching anything manually. Here's the exact system -- tools, triggers, and workflow -- that makes it work."
+  publishDate="2026-03-14"
+  category="Automation Guide"
+  readTime="12 min read"
+>
+
+<div class="verdict-box">
+  <h3>Bottom Line Up Front</h3>
+  <p>A fully automated onboarding system takes about two weeks to build and pays for itself within the first month. The core stack is GoHighLevel for CRM and automation, Tally for intake forms, PandaDoc for contracts, and Zapier to connect anything that doesn't connect natively. Once running, new partners move from application to signed contract to active status without you touching a single email or document.</p>
+</div>
+
+<div class="toc">
+  <h4>Table of Contents</h4>
+  <ol>
+    <li><a href="#why-automate">Why Automate Onboarding</a></li>
+    <li><a href="#the-stack">The Tools You Need</a></li>
+    <li><a href="#the-system">The 8-Step System</a></li>
+    <li><a href="#step-by-step">Building It Step by Step</a></li>
+    <li><a href="#common-mistakes">Common Mistakes</a></li>
+    <li><a href="#results">What to Expect</a></li>
+  </ol>
+</div>
+
+<h2>Why Automate Onboarding</h2>
+
+Every hour spent manually onboarding a new partner is an hour not spent on growth. At thousands of venue locations, manual onboarding would require a full-time coordinator just to manage intake forms, send contracts, follow up on signatures, and set up new accounts. That's $50,000/year in salary for a process that can run on $400/mo in software.
+
+Beyond cost, manual onboarding introduces errors. Missed follow-ups, unsigned contracts that fall through the cracks, inconsistent information sent to different partners -- these problems compound as you scale. Automated onboarding is more consistent than any human process.
+
+The system I'm describing handles everything from initial application to active partner status. The only human touchpoint is reviewing the application and clicking approve. Everything else is automated.
+
+<h2>The Tools You Need</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Purpose</th>
+      <th>Monthly Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GoHighLevel</td>
+      <td>CRM, pipeline, automation hub</td>
+      <td>$297/mo</td>
+    </tr>
+    <tr>
+      <td>Tally</td>
+      <td>Intake forms</td>
+      <td>Free</td>
+    </tr>
+    <tr>
+      <td><a href="/reviews/pandadoc">PandaDoc</a></td>
+      <td>Contract generation and e-signature</td>
+      <td>$49/mo</td>
+    </tr>
+    <tr>
+      <td>Zapier</td>
+      <td>Connecting tools that don't integrate natively</td>
+      <td>$49/mo</td>
+    </tr>
+    <tr>
+      <td>ConvertKit</td>
+      <td>Email sequences for onboarded partners</td>
+      <td>$0-29/mo</td>
+    </tr>
+  </tbody>
+</table>
+
+Total: approximately $395-425/mo to run a fully automated onboarding system for unlimited partners.
+
+<h2>The 8-Step System</h2>
+
+Here's the complete flow from partner application to active status:
+
+<p><strong>Step 1 -- Application submitted</strong></p>
+Partner fills out your Tally intake form. Tally collects all required information: business name, location, contact details, business type, and any qualification questions.
+
+<p><strong>Step 2 -- CRM record created automatically</strong></p>
+Tally submits to GoHighLevel via webhook. A new contact is created in your CRM, tagged as "Application Received", and placed in your pipeline at the first stage.
+
+<p><strong>Step 3 -- Confirmation email sent automatically</strong></p>
+GoHighLevel triggers a confirmation email immediately upon form submission. Partner receives acknowledgment that their application was received with expected timeline.
+
+<p><strong>Step 4 -- Internal notification sent to you</strong></p>
+GoHighLevel sends you an internal notification (email or SMS depending on preference) with the application details. You review and either approve or decline.
+
+<p><strong>Step 5 -- Contract generated and sent automatically</strong></p>
+If approved, you update the pipeline stage to "Approved" in GoHighLevel. This triggers PandaDoc via Zapier to generate a contract pre-populated with the partner's information from the CRM and send it for e-signature automatically.
+
+<p><strong>Step 6 -- Follow-up sequence activates</strong></p>
+GoHighLevel starts a follow-up sequence if the contract isn't signed within 48 hours. Day 2: reminder email. Day 4: SMS follow-up. Day 7: final reminder. No manual tracking required.
+
+<p><strong>Step 7 -- Contract signed confirmation</strong></p>
+When the partner signs in PandaDoc, a webhook fires to GoHighLevel. The pipeline stage updates to "Contract Signed", the follow-up sequence stops, and a welcome sequence begins.
+
+<p><strong>Step 8 -- Welcome sequence and account setup</strong></p>
+GoHighLevel sends the welcome email sequence -- account credentials, setup instructions, resources, and check-in schedule. Partner is now active. You never sent a single email manually.
+
+<h2>Building It Step by Step</h2>
+
+<h3>Phase 1 -- Build the Intake Form (Day 1)</h3>
+
+Go to tally.so and create a new form. Include fields for:
+<ul>
+  <li>Business name and type</li>
+  <li>Primary contact name and email</li>
+  <li>Location address</li>
+  <li>Phone number</li>
+  <li>Any qualification questions specific to your business</li>
+</ul>
+
+Set the form to submit via webhook to GoHighLevel. In GoHighLevel, go to Settings -- Integrations -- Webhooks and copy your webhook URL. Paste it into Tally's webhook settings.
+
+Test the form submission and confirm a contact appears in GoHighLevel.
+
+<h3>Phase 2 -- Build the CRM Pipeline (Day 1-2)</h3>
+
+In GoHighLevel, create a pipeline with these stages:
+<ul>
+  <li>Application Received</li>
+  <li>Under Review</li>
+  <li>Approved</li>
+  <li>Contract Sent</li>
+  <li>Contract Signed</li>
+  <li>Active Partner</li>
+  <li>Declined</li>
+</ul>
+
+Each stage transition will trigger automations. Set up the pipeline before building workflows so you have stages to reference.
+
+<h3>Phase 3 -- Build the Automation Workflows (Day 3-5)</h3>
+
+In GoHighLevel's workflow builder, create these workflows:
+
+<p><strong>Workflow 1: New Application</strong></p>
+Trigger: Contact tag "Application Received" applied
+Actions: Send confirmation email, send internal notification, add to pipeline
+
+<p><strong>Workflow 2: Contract Trigger</strong></p>
+Trigger: Pipeline stage changes to "Approved"
+Actions: Zapier webhook to PandaDoc to generate and send contract
+
+<p><strong>Workflow 3: Contract Follow-Up</strong></p>
+Trigger: Pipeline stage is "Contract Sent" for 48 hours
+Actions: Day 2 email, Day 4 SMS, Day 7 final email
+
+<p><strong>Workflow 4: Welcome Sequence</strong></p>
+Trigger: Pipeline stage changes to "Contract Signed"
+Actions: Stop follow-up sequence, start welcome email sequence, update tags
+
+<h3>Phase 4 -- Connect PandaDoc (Day 5-7)</h3>
+
+In PandaDoc, create your contract template. Use merge fields for partner name, business name, address, and any variable terms. In Zapier, create a Zap that:
+<ul>
+  <li>Triggers when GoHighLevel pipeline stage changes to "Approved"</li>
+  <li>Creates a document from your PandaDoc template with the contact's data</li>
+  <li>Sends the document to the partner's email for signature</li>
+</ul>
+
+Test with a real application to confirm the merge fields populate correctly.
+
+<h3>Phase 5 -- Test the Full Flow (Day 7-10)</h3>
+
+Submit a test application through your Tally form using a personal email address. Walk through the entire flow:
+<ul>
+  <li>Confirm CRM record created</li>
+  <li>Confirm confirmation email received</li>
+  <li>Approve the application, confirm contract generated and sent</li>
+  <li>Sign the contract, confirm welcome sequence triggers</li>
+</ul>
+
+Fix anything that doesn't work. Test again. Then go live.
+
+<h2>Common Mistakes</h2>
+
+<p><strong>Building automations before testing the webhook.</strong> Always confirm your form-to-CRM connection works before building anything on top of it. A broken webhook means nothing else works.</p>
+
+<p><strong>Too many required fields in the intake form.</strong> Every additional required field reduces completion rate. Collect only what you need to make an approval decision. You can collect more after they're onboarded.</p>
+
+<p><strong>Not building in manual override points.</strong> Automation should handle 90% of cases but you need easy ways to manually intervene when something unusual happens. Make sure you can manually trigger any step from the CRM.</p>
+
+<p><strong>Skipping the follow-up sequence.</strong> Unsigned contracts are the most common drop-off point. A three-touch follow-up sequence (email, SMS, final email) recovers 40-60% of applications that would otherwise fall through.</p>
+
+<p><strong>Not using GoHighLevel Snapshots.</strong> Once you've built this system once, use Snapshots to replicate it instantly to new sub-accounts. Don't rebuild from scratch for each new location or client.</p>
+
+<h2>What to Expect</h2>
+
+<p><strong>Week 1-2 of building:</strong> High time investment, significant frustration with webhook and Zapier configurations. Normal. Push through.</p>
+
+<p><strong>Week 3 onward:</strong> System runs without involvement. New applications arrive, move through the pipeline, and emerge as active partners without you sending a single email.</p>
+
+<p><strong>At scale:</strong> With 10+ new applications per week, the ROI of building this system becomes obvious. A manual process at that volume would require dedicated staff. The automated system handles it on $400/mo in software.</p>
+
+The most common feedback from operators who build this system: "I wish I'd done this two years ago."
+
+<a href="https://www.gohighlevel.com/?fp_ref=stosh61" class="affiliate-cta">
+  Build This System With GoHighLevel -- 30-Day Free Trial
+  <small>GoHighLevel is the automation hub that makes this whole system work -- affiliate link</small>
+</a>
+
+<div class="callout callout-blue">
+  <strong>Need the full tool stack?</strong> See the complete Operator Tech Stack guide for every tool in this system with exact pricing and setup notes.
+  <a href="/guides/operator-tech-stack">Read the full stack guide →</a>
+</div>
+
+<div class="callout callout-green">
+  <strong>Want the advanced version?</strong> See the full 8-step automated partner onboarding system with detailed Zapier configurations and workflow screenshots:
+  <a href="/guides/build-partner-onboarding-system">Build a Partner Onboarding System That Runs Itself →</a>
+</div>
+
+</Article>

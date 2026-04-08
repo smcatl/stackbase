@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const posts = [
+  { tag: 'Automation', title: 'How to Build a Partner Onboarding System That Runs Itself', excerpt: 'The exact 8-step automated onboarding system running across thousands of venues using GHL, PandaDoc, Tally, and Zapier.', href: '/guides/build-partner-onboarding-system', date: 'Apr 2, 2026', readTime: '12 min' },
+  { tag: 'CRM Guide', title: 'GoHighLevel Snapshots: The Feature That Makes Multi-Location Management Possible', excerpt: 'Deep dive into Snapshots -- what they capture, how to build one, and a real-world deployment workflow.', href: '/guides/gohighlevel-snapshots', date: 'Apr 1, 2026', readTime: '8 min' },
+  { tag: 'Project Mgmt', title: 'Monday.com Review 2026: Project Management for Operators', excerpt: 'Template-based project management for repeatable multi-location operations.', href: '/reviews/monday', date: 'Apr 1, 2026', readTime: '9 min' },
+  { tag: 'Restaurant', title: 'Best POS Systems for Multi-Location Restaurants in 2026', excerpt: 'Toast, Square, Lightspeed, and Clover compared for multi-unit restaurant operations.', href: '/guides/best-pos-restaurants', date: 'Mar 31, 2026', readTime: '12 min' },
+  { tag: 'Automation Review', title: 'Zapier Review 2026: The Automation Tool Every Operator Needs', excerpt: 'The connective tissue of every operator stack. 15 active Zaps across thousands of venues.', href: '/reviews/zapier', date: 'Mar 31, 2026', readTime: '10 min' },
+  { tag: 'Operations', title: 'Best Employee Scheduling Software for Multi-Location Businesses (2026)', excerpt: 'Homebase, When I Work, Deputy, and 7shifts compared for multi-location operators.', href: '/guides/best-scheduling-software', date: 'Mar 26, 2026', readTime: '10 min' },
+  { tag: 'Comparison', title: 'ConvertKit vs AWeber 2026: Which Email Platform Wins for Operators?', excerpt: 'Both offer lifetime recurring commissions. AWeber wins for operators wanting pricing stability and 50% commissions.', href: '/comparisons/convertkit-vs-aweber', date: 'Mar 25, 2026', readTime: '9 min' },
+  { tag: 'HR Guide', title: 'Best Payroll Software for Multi-Location Small Business in 2026', excerpt: 'Gusto, QuickBooks, ADP, and Paychex compared. Multi-state compliance, tip tracking, and pricing at scale.', href: '/guides/best-payroll-software', date: 'Mar 25, 2026', readTime: '11 min' },
+  { tag: 'Contracts Review', title: 'PandaDoc Review 2026: The Contract Tool That Replaced DocuSign for Us', excerpt: 'Proposals, contracts, and e-signatures in one platform with document analytics across thousands of venue agreements.', href: '/reviews/pandadoc', date: 'Mar 24, 2026', readTime: '10 min' },
+  { tag: 'Comparison', title: 'Kinsta vs SiteGround 2026: Which Hosting Is Right for Your Business?', excerpt: 'Premium vs value hosting. Kinsta for performance-critical sites, SiteGround for budget-conscious operators.', href: '/comparisons/kinsta-vs-siteground', date: 'Mar 24, 2026', readTime: '9 min' },
+  { tag: 'CRM Guide', title: 'GoHighLevel Pricing 2026: What You Actually Pay at Every Tier', excerpt: 'Starter $97, Agency Unlimited $297, SaaS $497 -- what each tier includes, hidden costs, and which one operators actually need.', href: '/guides/gohighlevel-pricing', date: 'Mar 19, 2026', readTime: '8 min' },
+  { tag: 'WiFi Guide', title: 'Best WiFi Management Software for Multi-Location Venues (2026)', excerpt: 'How to manage WiFi across thousands of venues -- access point selection, cloud management, captive portals, and network infrastructure.', href: '/guides/best-wifi-management', date: 'Mar 18, 2026', readTime: '11 min' },
+  { tag: 'Email Review', title: 'AWeber Review 2026: 25 Years of Email Marketing -- Still Worth It?', excerpt: 'Battle-tested deliverability and 50% lifetime affiliate commissions. After testing six platforms, here is where AWeber fits.', href: '/reviews/aweber', date: 'Mar 18, 2026', readTime: '10 min' },
+  { tag: 'Courses Review', title: 'Thinkific Review 2026: Best Course Platform for Operator Training?', excerpt: 'After building a partner training program across thousands of venues, Thinkific is the platform that scaled.', href: '/reviews/thinkific', date: 'Mar 17, 2026', readTime: '10 min' },
+  { tag: 'Comparison', title: 'Thinkific vs Teachable 2026: Which Wins for Operator Training?', excerpt: 'Two course platforms, two different strengths. Thinkific wins for internal training, Teachable wins for selling.', href: '/comparisons/thinkific-vs-teachable', date: 'Mar 17, 2026', readTime: '9 min' },
+  { tag: 'Restaurant', title: 'Best Software for Restaurant Chains and Multi-Location Food Service (2026)', excerpt: 'POS, scheduling, payroll, CRM, email, and WiFi -- the complete stack for multi-location restaurant operators.', href: '/guides/best-restaurant-software', date: 'Mar 14, 2026', readTime: '10 min' },
+  { tag: 'Franchise', title: 'Best Software for Franchise Operations in 2026', excerpt: 'CRM, training, project management, contracts, automation, and payroll for franchise operators scaling to 50+ units.', href: '/guides/best-franchise-software', date: 'Mar 14, 2026', readTime: '10 min' },
+  { tag: 'Salon', title: 'Best Software for Salon and Spa Chains in 2026', excerpt: 'Booking, CRM, email, payroll, and WiFi management for multi-location salon and spa operators.', href: '/guides/best-salon-software', date: 'Mar 14, 2026', readTime: '10 min' },
+  { tag: 'Retail', title: 'Best Software for Multi-Location Retail in 2026', excerpt: 'POS, inventory, CRM, email, and payroll for retail chains scaling across multiple locations.', href: '/guides/best-retail-software', date: 'Mar 14, 2026', readTime: '10 min' },
+  { tag: 'CRM Guide', title: 'Best CRM for Multi-Location Businesses in 2026', excerpt: 'Tested across thousands of venues. Here are the five CRMs that actually hold up at scale.', href: '/guides/crm-for-operators', date: 'Mar 14, 2026', readTime: '13 min' },
+  { tag: 'Email Guide', title: 'Best Email Marketing Software for Small Business in 2026', excerpt: 'Tested six platforms. Here is which email tool works for operators building lists and running automations.', href: '/guides/best-email-marketing', date: 'Mar 14, 2026', readTime: '11 min' },
+  { tag: 'Email Review', title: 'ConvertKit Review 2026: Built for Operators Who Actually Grow', excerpt: 'After testing six email platforms, ConvertKit is the one I kept. Here is what makes it different.', href: '/reviews/convertkit', date: 'Mar 14, 2026', readTime: '11 min' },
+  { tag: 'Hosting Review', title: 'Kinsta Review 2026: Is the Premium Price Worth It?', excerpt: 'I moved three business sites to Kinsta. The performance difference is real. Here is the honest breakdown.', href: '/reviews/kinsta', date: 'Mar 14, 2026', readTime: '10 min' },
+  { tag: 'Automation', title: "How to Automate Client Onboarding: The Operator's 8-Step System", excerpt: 'I onboard new venue partners across thousands of locations without touching anything manually. Here is the exact system.', href: '/guides/automate-onboarding', date: 'Mar 14, 2026', readTime: '12 min' },
+  { tag: 'Comparison', title: 'GoHighLevel vs HubSpot 2026: Which Wins for Multi-Location Operators?', excerpt: 'A genuine head-to-head from an operator who has used both. The answer depends on your scale.', href: '/comparisons/gohighlevel-vs-hubspot', date: 'Mar 13, 2026', readTime: '10 min' },
+  { tag: 'CRM Review', title: "GoHighLevel Review 2026: An Operator's Honest Take", excerpt: "I've deployed CRMs across thousands of venues. Here's why GHL finally replaced our entire stack.", href: '/reviews/gohighlevel', date: 'Mar 13, 2026', readTime: '12 min' },
+  { tag: 'Stack Guide', title: "The Operator's Tech Stack: 8 Tools That Run My Business", excerpt: 'Every tool I pay for monthly with exact costs and what each replaced.', href: '/guides/operator-tech-stack', date: 'Mar 13, 2026', readTime: '9 min' },
+];
+---
+<Base
+  title="All Articles -- OperatorStack"
+  description="Software reviews, comparisons, and operator guides from OperatorStack. Updated weekly."
+>
+  <div style="background:var(--gray-50); border-bottom:1px solid var(--gray-200); padding:4rem 1.5rem 3rem;">
+    <div class="container">
+      <p class="section-label">Blog</p>
+      <h1 style="margin-bottom:.75rem;">All Articles</h1>
+      <p style="font-size:1.05rem; color:var(--gray-600); max-width:560px;">
+        Reviews, comparisons, and guides. Published weekly. Written from the field.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container" style="max-width:860px;">
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        {posts.map(post => (
+          <a href={post.href} class="post-card">
+            <div class="post-card-body">
+              <span class="post-card-tag">{post.tag}</span>
+              <h3>{post.title}</h3>
+              <p>{post.excerpt}</p>
+              <div class="post-card-meta">
+                <span>{post.date}</span>
+                <span>·</span>
+                <span>{post.readTime}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Base>

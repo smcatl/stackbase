@@ -1,0 +1,252 @@
+---
+import Base from '../layouts/Base.astro';
+
+const featuredPosts = [
+  {
+    tag: 'Review',
+    title: 'GoHighLevel Review 2026: An Operator\'s Honest Take',
+    excerpt: 'I\'ve run thousands of venues on every CRM imaginable. Here\'s why GHL finally stuck — and what still drives me crazy.',
+    href: '/reviews/gohighlevel',
+    date: 'Mar 2026',
+    readTime: '12 min',
+  },
+  {
+    tag: 'Comparison',
+    title: 'GoHighLevel vs HubSpot: Which Wins for Multi-Location?',
+    excerpt: 'Two completely different tools solving the same problem. The right one depends entirely on your operation size and tech appetite.',
+    href: '/comparisons/gohighlevel-vs-hubspot',
+    date: 'Mar 2026',
+    readTime: '10 min',
+  },
+  {
+    tag: 'Guide',
+    title: 'The Operator\'s Tech Stack: 8 Tools That Run My Business',
+    excerpt: 'Every tool I pay for monthly across CRM, email, automation, networking, and billing — with exact costs and what each replaces.',
+    href: '/guides/operator-tech-stack',
+    date: 'Mar 2026',
+    readTime: '9 min',
+  },
+];
+---
+<Base title="OperatorStack" description="Software reviews and tech stack advice for multi-location business operators. Written by an operator, for operators.">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-inner container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>⚡</span>
+          Built by operators, for operators
+        </div>
+        <h1>Stop wasting money on software that <em>breaks at scale</em></h1>
+        <p class="hero-sub">
+          Independent reviews and real-world comparisons for operators running
+          multiple locations. No sponsored rankings. No free trials.
+          Just what actually works.
+        </p>
+        <div class="hero-actions">
+          <a href="/start-here" class="btn btn-teal btn-lg">Start Here →</a>
+          <a href="/guides/operator-tech-stack" class="btn btn-outline btn-lg" style="color:white; border-color:rgba(255,255,255,.3);">My Full Stack</a>
+        </div>
+      </div>
+
+      <div class="hero-stat-card">
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">1K<em>+</em></span>
+            <span class="stat-label">Tools evaluated</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">1000s</span>
+            <span class="stat-label">Venues managed</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number"><em>$</em>0</span>
+            <span class="stat-label">Paid placements</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">Q1</span>
+            <span class="stat-label">2026 updated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST STRIP -->
+  <div class="latest-strip">
+    <span class="latest-label">Latest →</span>
+    <div class="latest-links">
+      <a href="/reviews/aweber">AWeber Review</a>
+      <span>·</span>
+      <a href="/reviews/pandadoc">PandaDoc Review</a>
+      <span>·</span>
+      <a href="/guides/best-payroll-software">Best Payroll Software</a>
+      <span>·</span>
+      <a href="/guides/gohighlevel-snapshots">GHL Snapshots Guide</a>
+      <span>·</span>
+      <a href="/guides/best-restaurant-software">Restaurant Software</a>
+    </div>
+  </div>
+
+  <!-- FEATURED POSTS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Latest Reviews & Guides</p>
+        <h2 class="section-title">Written From the Field, Not a Desk</h2>
+        <p class="section-sub">Every review is based on actual deployment experience across real business locations — not a free trial.</p>
+      </div>
+
+      <div class="card-grid">
+        {featuredPosts.map(post => (
+          <a href={post.href} class="post-card">
+            <div class="post-card-body">
+              <span class="post-card-tag">{post.tag}</span>
+              <h3>{post.title}</h3>
+              <p>{post.excerpt}</p>
+              <div class="post-card-meta">
+                <span>{post.date}</span>
+                <span>·</span>
+                <span>{post.readTime}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a href="/blog" class="btn btn-outline">See All Articles →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY OPERATORSTACK -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Why OperatorStack</p>
+        <h2 class="section-title">Advice That Holds Up in the Real World</h2>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon feature-icon-teal">🏢</div>
+          <h3>Operator Perspective</h3>
+          <p>Every recommendation comes from someone who has actually deployed tech across 50+ commercial locations — not a blogger reviewing a free trial.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon feature-icon-navy">⚡</div>
+          <h3>Multi-Location Specific</h3>
+          <p>Generic software advice doesn't scale. We focus on how tools handle multiple locations, multiple users, and operational complexity.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon feature-icon-orange">💰</div>
+          <h3>Full Cost Transparency</h3>
+          <p>We list exact prices, what gets expensive at scale, and the hidden costs most reviewers skip. Including what we earn from affiliate links.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon feature-icon-blue">🔗</div>
+          <h3>Stack Integration Focus</h3>
+          <p>How does it connect to your CRM, your billing, your onboarding? We test integrations because isolated tool reviews miss the real picture.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon feature-icon-teal">📡</div>
+          <h3>WiFi & Network Expertise</h3>
+          <p>Unique coverage of WiFi management, IoT deployment, and connectivity tools — a gap in every other operator resource out there.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon feature-icon-navy">✅</div>
+          <h3>Honest When It Sucks</h3>
+          <p>If a tool has real problems, we say so — even for products we earn commissions from. Fake praise destroys trust and wastes your money.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POPULAR CATEGORIES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head text-center">
+        <p class="section-label">Browse by Category</p>
+        <h2 class="section-title">Find What You Need</h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:1rem;">
+        {[
+          { icon: '🏆', label: 'CRM Reviews', href: '/reviews?category=crm', desc: 'GoHighLevel, HubSpot, and more' },
+          { icon: '📧', label: 'Email Marketing', href: '/reviews?category=email', desc: 'ConvertKit, AWeber, GetResponse' },
+          { icon: '⚙️', label: 'Automation', href: '/guides?category=automation', desc: 'Zapier, workflows, onboarding' },
+          { icon: '📡', label: 'WiFi & Network', href: '/guides?category=wifi', desc: 'Ubiquiti, Starlink, access points' },
+          { icon: '🌐', label: 'Hosting & Web', href: '/reviews?category=hosting', desc: 'Kinsta, WordPress, performance' },
+          { icon: '📊', label: 'My Full Stack', href: '/guides/operator-tech-stack', desc: 'Everything I actually pay for' },
+        ].map(cat => (
+          <a href={cat.href} class="card" style="text-decoration:none; display:block;">
+            <div style="font-size:1.75rem; margin-bottom:.6rem;">{cat.icon}</div>
+            <h4 style="color:var(--navy); margin-bottom:.3rem;">{cat.label}</h4>
+            <p style="font-size:.85rem; color:var(--gray-500); margin:0;">{cat.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST SIGNALS -->
+  <section class="section" style="background:var(--navy); color:white;">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label" style="color:var(--teal);">Why Operators Trust Us</p>
+        <h2 class="section-title" style="color:white;">No Bloggers. No Theory. No Paid Placements.</h2>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; margin-top:2rem;">
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:1.75rem;">
+          <div style="font-size:2rem; margin-bottom:1rem;">🏢</div>
+          <h3 style="color:white; margin-bottom:0.5rem;">Thousands of Real Deployments</h3>
+          <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; margin:0;">Every tool reviewed has been deployed with real money across thousands of business locations. Not a free trial. Not a press kit.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:1.75rem;">
+          <div style="font-size:2rem; margin-bottom:1rem;">🛡️</div>
+          <h3 style="color:white; margin-bottom:0.5rem;">No Paid Placements</h3>
+          <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; margin:0;">Rankings are never for sale. We earn affiliate commissions if you buy -- but that never changes our recommendation. We disclose every affiliate relationship.</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:1.75rem;">
+          <div style="font-size:2rem; margin-bottom:1rem;">🔄</div>
+          <h3 style="color:white; margin-bottom:0.5rem;">Updated Quarterly</h3>
+          <p style="color:rgba(255,255,255,0.6); font-size:0.95rem; margin:0;">Software changes. Prices change. We update every review quarterly to reflect current pricing, features, and our ongoing experience with each tool.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMAIL SIGNUP -->
+  <section class="section-sm" style="padding:4rem 1.5rem; background:linear-gradient(135deg, var(--navy) 0%, #1565C0 100%);">
+    <div class="container" style="max-width:680px; text-align:center;">
+      <p style="font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--teal); margin-bottom:0.75rem;">FREE DOWNLOAD</p>
+      <h2 style="color:white; font-size:2.25rem; margin-bottom:1rem;">The Operator's Software Toolkit</h2>
+      <p style="color:rgba(255,255,255,0.7); font-size:1.1rem; margin-bottom:2rem;">12 tools reviewed, stack-ranked, and priced for operators running multiple locations.</p>
+      <div style="display:flex; flex-direction:column; gap:0.6rem; text-align:left; max-width:420px; margin:0 auto 2rem; background:rgba(255,255,255,0.05); border-radius:12px; padding:1.25rem 1.5rem;">
+        <div style="display:flex; align-items:center; gap:0.75rem; color:rgba(255,255,255,0.9); font-size:0.95rem;">
+          <span style="color:var(--teal);">✓</span> 12 tools reviewed and stack-ranked
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem; color:rgba(255,255,255,0.9); font-size:0.95rem;">
+          <span style="color:var(--teal);">✓</span> Exact monthly costs at every tier
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem; color:rgba(255,255,255,0.9); font-size:0.95rem;">
+          <span style="color:var(--teal);">✓</span> What each tool replaced and why
+        </div>
+        <div style="display:flex; align-items:center; gap:0.75rem; color:rgba(255,255,255,0.9); font-size:0.95rem;">
+          <span style="color:var(--teal);">✓</span> Which tier operators actually need
+        </div>
+      </div>
+      <a href="/operator-toolkit" class="btn btn-teal btn-lg" style="font-size:1rem; padding:1rem 2.5rem;">
+        Get the Free Toolkit →
+      </a>
+      <p style="color:rgba(255,255,255,0.4); font-size:0.8rem; margin-top:1rem;">No spam. Unsubscribe anytime. We disclose all affiliate relationships.</p>
+    </div>
+  </section>
+
+</Base>

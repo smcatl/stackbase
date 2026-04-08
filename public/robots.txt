@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://operatorstack.tech/sitemap-index.xml
