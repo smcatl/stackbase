@@ -33,9 +33,18 @@ export const site = {
   niche: env.PUBLIC_SITE_NICHE ?? '',
   entityLabel: env.PUBLIC_SITE_ENTITY ?? 'operators',
 
-  // Brand
+  // Brand — colors
   accentColor: env.PUBLIC_BRAND_ACCENT ?? '#00897B',
   accentColorLight: env.PUBLIC_BRAND_ACCENT_LIGHT ?? '#4DB6AC',
+  backgroundColor: env.PUBLIC_BRAND_BG ?? '#0D1F3C',
+  textColor: env.PUBLIC_BRAND_TEXT ?? '#FFFFFF',
+
+  // Brand — fonts
+  fontDisplay: env.PUBLIC_FONT_DISPLAY ?? "'Syne', sans-serif",
+  fontBody: env.PUBLIC_FONT_BODY ?? "'DM Sans', sans-serif",
+  fontGoogleUrl:
+    env.PUBLIC_FONT_GOOGLE_URL ??
+    'https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap',
 
   // Analytics + verification
   plausibleScript: env.PUBLIC_PLAUSIBLE_SCRIPT ?? '',

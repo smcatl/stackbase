@@ -59,13 +59,23 @@ const websiteLd = {
     <meta name="impact-site-verification" value={site.impactVerification} />
   )}
 
-  <!-- Brand color override — pulled from env via site config -->
-  <style is:inline define:vars={{ brandAccent: site.accentColor, brandAccentLight: site.accentColorLight }}>
+  <!-- Brand color + font overrides — pulled from env via site config -->
+  <style is:inline define:vars={{
+    brandAccent: site.accentColor,
+    brandAccentLight: site.accentColorLight,
+    brandBg: site.backgroundColor,
+    brandText: site.textColor,
+    fontDisplay: site.fontDisplay,
+    fontBody: site.fontBody,
+  }}>
     :root {
       --teal: var(--brandAccent);
       --teal-light: var(--brandAccentLight);
       --brand: var(--brandAccent);
       --brand-light: var(--brandAccentLight);
+      --font-display: var(--fontDisplay);
+      --font-heading: var(--fontBody);
+      --font-body: var(--fontBody);
     }
   </style>
 
@@ -97,10 +107,12 @@ const websiteLd = {
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <!-- Fonts -->
+  <!-- Fonts — Google Fonts URL per site, driven by env -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  {site.fontGoogleUrl && (
+    <link href={site.fontGoogleUrl} rel="stylesheet" />
+  )}
 
   <!-- Plausible analytics -->
   {site.plausibleScript && (
