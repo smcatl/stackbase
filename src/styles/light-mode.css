@@ -1,0 +1,288 @@
+/*
+ * light-mode.css — light-background variant of stackbase's design system.
+ *
+ * Loaded ONLY when PUBLIC_BRAND_MODE=light (via conditional import in
+ * Base.astro → LightModeStyles.astro wrapper).
+ *
+ * Target site: RealEstateOpsHub (Blueprint Authority — cream background,
+ * navy + gold accents, editorial/trustworthy feel).
+ *
+ * Strategy: this file overrides ONLY the surfaces that assume dark backgrounds
+ * in global.css. Typography system, spacing, and component structure all
+ * stay intact.
+ */
+
+:root {
+  /* Global tone shift — light surfaces, dark text. Brand accent/bg colors
+     are still driven by env vars (PUBLIC_BRAND_ACCENT, PUBLIC_BRAND_BG etc)
+     via define:vars in Base.astro. These rules just override surface colors. */
+  --light-bg: var(--brandBg, #f2efe8);
+  --light-bg-alt: #fbf9f3;
+  --light-text: var(--brandText, #14110e);
+  --light-text-muted: rgba(20, 17, 14, 0.62);
+  --light-text-subtle: rgba(20, 17, 14, 0.42);
+  --light-border: rgba(20, 17, 14, 0.12);
+  --light-border-strong: rgba(20, 17, 14, 0.22);
+  --light-nav-bg: rgba(242, 239, 232, 0.96);
+  --light-card-bg: #ffffff;
+}
+
+html,
+body {
+  background: var(--light-bg);
+  color: var(--light-text);
+}
+
+/* ----- Nav ----- */
+.site-nav {
+  background: var(--light-nav-bg);
+  border-bottom: 1px solid var(--light-border);
+  backdrop-filter: saturate(140%) blur(6px);
+}
+
+.site-nav .nav-logo-text .logo-word-1 {
+  color: var(--light-text);
+}
+
+.site-nav .nav-logo-text .logo-word-2 {
+  color: var(--brandAccent);
+}
+
+.site-nav .nav-links a {
+  color: var(--light-text);
+}
+
+.site-nav .nav-links a:hover {
+  color: var(--brandAccent);
+}
+
+.site-nav .nav-cta {
+  color: var(--brandAccent) !important;
+  border: 1px solid var(--brandAccent);
+}
+
+/* ----- Brand mark on light ----- */
+.site-nav .nav-logo-mark {
+  background: var(--light-text);
+}
+
+/* ----- Hero + sections ----- */
+.hero {
+  background: var(--light-bg);
+  color: var(--light-text);
+  /* Subtle blueprint grid — 1px navy lines at 10% opacity on 40px grid */
+  background-image:
+    linear-gradient(to right, rgba(26, 39, 68, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 39, 68, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.hero h1,
+.hero .hero-sub,
+.hero-badge {
+  color: var(--light-text);
+}
+
+.hero-badge {
+  background: rgba(20, 17, 14, 0.04);
+  border: 1px solid var(--light-border);
+}
+
+.section {
+  background: var(--light-bg);
+  color: var(--light-text);
+}
+
+.section-alt {
+  background: var(--light-bg-alt);
+}
+
+.section-label {
+  color: var(--brandAccent);
+}
+
+.section-title,
+.section h2,
+.section h3,
+h1,
+h2,
+h3 {
+  color: var(--light-text);
+}
+
+/* ----- Cards + post cards ----- */
+.card,
+.post-card {
+  background: var(--light-card-bg);
+  border: 1px solid var(--light-border);
+  color: var(--light-text);
+  box-shadow: 0 2px 18px rgba(20, 17, 14, 0.05);
+}
+
+.post-card h3 {
+  color: var(--light-text);
+}
+
+.post-card p {
+  color: var(--light-text-muted);
+}
+
+.post-card-tag {
+  color: var(--brandAccent);
+  background: rgba(201, 168, 76, 0.12);
+}
+
+.post-card:hover {
+  border-color: var(--brandAccent);
+  box-shadow: 0 4px 28px rgba(20, 17, 14, 0.08);
+}
+
+/* ----- Feature grid + trust bar ----- */
+.feature-item {
+  background: var(--light-card-bg);
+  border: 1px solid var(--light-border);
+  color: var(--light-text);
+}
+
+.feature-item h3 {
+  color: var(--light-text);
+}
+
+.feature-item p {
+  color: var(--light-text-muted);
+}
+
+.trust-bar-light {
+  background: var(--light-card-bg);
+  border: 1px solid var(--light-border);
+}
+
+/* ----- Buttons ----- */
+.btn-teal {
+  background: var(--brandAccent);
+  color: var(--light-bg);
+}
+
+.btn-teal:hover {
+  background: var(--brandAccentLight);
+}
+
+.btn-outline {
+  color: var(--light-text) !important;
+  border-color: var(--light-border-strong) !important;
+}
+
+.btn-outline:hover {
+  color: var(--brandAccent) !important;
+  border-color: var(--brandAccent) !important;
+}
+
+/* ----- Footer (editorial inversion: dark footer on light body) ----- */
+.site-footer {
+  background: var(--brandBg-deep, #1a2744);
+  color: rgba(255, 255, 255, 0.78);
+  border-top: 4px solid var(--brandAccent);
+}
+
+.site-footer h5 {
+  color: #ffffff;
+}
+
+.site-footer a {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.site-footer a:hover {
+  color: var(--brandAccent);
+}
+
+.site-footer .nav-logo-text .logo-word-1 {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.site-footer .nav-logo-text .logo-word-2 {
+  color: var(--brandAccent);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ----- Prose / article body ----- */
+.prose {
+  color: var(--light-text);
+}
+
+.prose a {
+  color: var(--brandAccent);
+  text-decoration-color: var(--brandAccent);
+}
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--light-text);
+  border-bottom: 1px solid var(--light-border);
+  padding-bottom: 0.25em;
+}
+
+.prose blockquote {
+  border-left: 3px solid var(--brandAccent);
+  color: var(--light-text-muted);
+  background: rgba(201, 168, 76, 0.06);
+}
+
+/* ----- Article hero header ----- */
+.article-hero {
+  background: var(--light-bg);
+  border-bottom: 1px solid var(--light-border);
+}
+
+.article-hero h1 {
+  color: var(--light-text);
+}
+
+.article-meta {
+  color: var(--light-text-muted);
+}
+
+/* ----- Tags ----- */
+.tag-teal {
+  color: var(--brandAccent);
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+/* ----- Disclosures + callouts on light ----- */
+.affiliate-disclosure-top,
+.affiliate-disclosure-footer {
+  background: #fbf4d9;
+  border: 1px solid #e8d27a;
+  color: #6b5500;
+}
+
+/* ----- Search + ToC ----- */
+.searchbox input {
+  background: var(--light-card-bg);
+  border: 1px solid var(--light-border);
+  color: var(--light-text);
+}
+
+.sidebar-toc {
+  color: var(--light-text-muted);
+}
+
+.sidebar-toc a {
+  color: var(--light-text-muted);
+}
+
+.sidebar-toc a.active {
+  color: var(--brandAccent);
+  border-left-color: var(--brandAccent);
+}
+
+/* ----- Reading progress bar ----- */
+.reading-progress {
+  background: var(--brandAccent);
+}

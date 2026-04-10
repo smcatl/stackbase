@@ -1,0 +1,10 @@
+---
+/**
+ * LightModeStyles — side-effect component that imports light-mode.css.
+ *
+ * Rendered conditionally in Base.astro when site.brandMode === 'light'.
+ * Astro bundles the CSS only into pages where this component appears, so
+ * dark-mode sites don't pay the weight cost.
+ */
+import '../styles/light-mode.css';
+---

@@ -34,17 +34,28 @@ export const site = {
   entityLabel: env.PUBLIC_SITE_ENTITY ?? 'operators',
 
   // Brand — colors
-  accentColor: env.PUBLIC_BRAND_ACCENT ?? '#00897B',
-  accentColorLight: env.PUBLIC_BRAND_ACCENT_LIGHT ?? '#4DB6AC',
-  backgroundColor: env.PUBLIC_BRAND_BG ?? '#0D1F3C',
-  textColor: env.PUBLIC_BRAND_TEXT ?? '#FFFFFF',
+  // NOTE: using `||` instead of `??` because Vite's dotenv parser strips
+  // `#` and everything after it as a comment if the value isn't quoted.
+  // Result: PUBLIC_BRAND_ACCENT=#00897B → empty string (not undefined),
+  // so `??` falls through and we get an empty CSS color. `||` handles
+  // both undefined AND empty-string fallback correctly.
+  // ALSO: per-site .env files MUST quote hex values: PUBLIC_BRAND_ACCENT="#00897B"
+  accentColor: env.PUBLIC_BRAND_ACCENT || '#00897B',
+  accentColorLight: env.PUBLIC_BRAND_ACCENT_LIGHT || '#4DB6AC',
+  backgroundColor: env.PUBLIC_BRAND_BG || '#0D1F3C',
+  textColor: env.PUBLIC_BRAND_TEXT || '#FFFFFF',
 
   // Brand — fonts
-  fontDisplay: env.PUBLIC_FONT_DISPLAY ?? "'Syne', sans-serif",
-  fontBody: env.PUBLIC_FONT_BODY ?? "'DM Sans', sans-serif",
+  fontDisplay: env.PUBLIC_FONT_DISPLAY || "'Syne', sans-serif",
+  fontBody: env.PUBLIC_FONT_BODY || "'DM Sans', sans-serif",
   fontGoogleUrl:
-    env.PUBLIC_FONT_GOOGLE_URL ??
+    env.PUBLIC_FONT_GOOGLE_URL ||
     'https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap',
+
+  // Brand — mode (light is only valid for RealEstateOpsHub; all other sites dark)
+  brandMode: (env.PUBLIC_BRAND_MODE ?? 'dark') as 'light' | 'dark',
+  /** Optional: path to a per-site SVG logo asset if a site wants to reference one. */
+  logoSvgPath: env.PUBLIC_LOGO_SVG_PATH ?? '/favicon.svg',
 
   // Analytics + verification
   plausibleScript: env.PUBLIC_PLAUSIBLE_SCRIPT ?? '',

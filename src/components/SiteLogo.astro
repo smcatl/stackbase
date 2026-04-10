@@ -1,0 +1,40 @@
+---
+/**
+ * SiteLogo — header + footer brand lockup (mark + wordmark).
+ *
+ * Renders the anchor-wrapped SiteMark next to a two-span wordmark
+ * (brandWord1 + brandWord2) pulled from site config.
+ *
+ * Each site can override this file to ship its own logo treatment —
+ * different wordmark typography, custom SVG mark, alternate layout.
+ *
+ * Props:
+ *   variant: 'header' | 'footer' — controls which color/tint variant renders
+ */
+import SiteMark from './SiteMark.astro';
+import { site } from '../config/site';
+
+interface Props {
+  variant?: 'header' | 'footer';
+}
+
+const { variant = 'header' } = Astro.props;
+const isFooter = variant === 'footer';
+---
+{isFooter ? (
+  <a href="/" class="nav-logo nav-logo-footer" style="margin-bottom:.75rem; display:inline-flex;">
+    <SiteMark style="background:rgba(255,255,255,0.15);" />
+    <span class="nav-logo-text">
+      <span class="logo-word-1" style="color:rgba(255,255,255,0.85);">{site.brandWord1}</span>
+      <span class="logo-word-2" style={`color:${site.accentColorLight};`}>{site.brandWord2}</span>
+    </span>
+  </a>
+) : (
+  <a href="/" class="nav-logo nav-logo-header">
+    <SiteMark />
+    <span class="nav-logo-text">
+      <span class="logo-word-1">{site.brandWord1}</span>
+      <span class="logo-word-2">{site.brandWord2}</span>
+    </span>
+  </a>
+)}

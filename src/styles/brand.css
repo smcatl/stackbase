@@ -1,0 +1,25 @@
+/*
+ * brand.css — per-site brand override slot.
+ *
+ * The stackbase default is INTENTIONALLY empty. Each site customizes its
+ * header, footer, hero, wordmark typography, and decorative accents by
+ * replacing this file with its own rules.
+ *
+ * Rules here are loaded AFTER global.css, so later-declared selectors win.
+ *
+ * Common selectors to target per site:
+ *   .site-nav                — nav container (padding, border, background)
+ *   .nav-logo-mark           — the brand mark box (size, shape, color)
+ *   .nav-logo-text           — the wordmark container (font-family, tracking)
+ *   .logo-word-1             — first word of the wordmark
+ *   .logo-word-2             — second word of the wordmark
+ *   .site-footer             — footer container
+ *   .footer-brand p          — footer tagline
+ *   .hero                    — homepage hero section
+ *   .section-label           — eyebrow/pre-heading labels
+ *   .section-title           — section headings
+ *   .btn, .btn-teal          — button styles
+ *   .card, .post-card        — card styles
+ *
+ * Each site's brand.css should be ≤200 lines of focused, distinctive rules.
+ */

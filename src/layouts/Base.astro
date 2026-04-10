@@ -1,7 +1,10 @@
 ---
 import '../styles/global.css';
+import '../styles/brand.css';
 import { site, pageTitle } from '../config/site';
 import { ClientRouter } from 'astro:transitions';
+import SiteLogo from '../components/SiteLogo.astro';
+import LightModeStyles from '../components/LightModeStyles.astro';
 
 interface Props {
   title: string;
@@ -47,8 +50,9 @@ const websiteLd = {
 };
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" data-brand-mode={site.brandMode}>
 <head>
+  {site.brandMode === 'light' && <LightModeStyles />}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
@@ -146,17 +150,7 @@ const websiteLd = {
   <!-- NAV -->
   <nav class="site-nav">
     <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="nav-logo-mark" aria-hidden="true">
-          <div class="logo-bar logo-bar-1"></div>
-          <div class="logo-bar logo-bar-2"></div>
-          <div class="logo-bar logo-bar-3"></div>
-        </div>
-        <span class="nav-logo-text">
-          <span class="logo-word-1">{site.brandWord1}</span>
-          <span class="logo-word-2">{site.brandWord2}</span>
-        </span>
-      </a>
+      <SiteLogo variant="header" />
       <ul class="nav-links">
         <li><a href="/reviews" data-astro-prefetch>Reviews</a></li>
         <li><a href="/comparisons" data-astro-prefetch>Comparisons</a></li>
@@ -175,17 +169,7 @@ const websiteLd = {
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a href="/" class="nav-logo" style="margin-bottom:.75rem; display:inline-flex;">
-          <div class="nav-logo-mark" aria-hidden="true" style="background:rgba(255,255,255,0.15);">
-            <div class="logo-bar logo-bar-1"></div>
-            <div class="logo-bar logo-bar-2"></div>
-            <div class="logo-bar logo-bar-3"></div>
-          </div>
-          <span class="nav-logo-text">
-            <span class="logo-word-1" style="color:rgba(255,255,255,0.85);">{site.brandWord1}</span>
-            <span class="logo-word-2" style={`color:${site.accentColorLight};`}>{site.brandWord2}</span>
-          </span>
-        </a>
+        <SiteLogo variant="footer" />
         <p>{site.tagline}</p>
       </div>
       {site.footerReviews.length > 0 && (

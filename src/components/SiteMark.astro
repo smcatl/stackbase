@@ -1,0 +1,31 @@
+---
+/**
+ * SiteMark — the brand MARK component (no wordmark text).
+ *
+ * This is the canonical stackbase mark: a 52x52 navy block holding three
+ * staggered horizontal bars. Matches OperatorStack's "Command Room" identity.
+ *
+ * Each site can override this file to ship its own SVG mark. Keep the same
+ * CSS class (`nav-logo-mark`) so the containing layout spacing stays consistent.
+ */
+interface Props {
+  class?: string;
+  /** Optional inline style override (e.g. for footer tint variants). */
+  style?: string;
+}
+
+const { class: className = '', style } = Astro.props;
+---
+{style ? (
+  <div class:list={['nav-logo-mark', className]} aria-hidden="true" style={style}>
+    <div class="logo-bar logo-bar-1"></div>
+    <div class="logo-bar logo-bar-2"></div>
+    <div class="logo-bar logo-bar-3"></div>
+  </div>
+) : (
+  <div class:list={['nav-logo-mark', className]} aria-hidden="true">
+    <div class="logo-bar logo-bar-1"></div>
+    <div class="logo-bar logo-bar-2"></div>
+    <div class="logo-bar logo-bar-3"></div>
+  </div>
+)}
