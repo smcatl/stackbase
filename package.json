@@ -5,8 +5,9 @@
   "description": "Template repo for env-driven affiliate review sites built on Astro. Clone, set env vars, deploy.",
   "scripts": {
     "dev": "astro dev",
+    "sync:affiliates": "node scripts/sync-affiliates.mjs",
     "build:redirects": "node scripts/build-redirects.mjs",
-    "prebuild": "npm run build:redirects",
+    "prebuild": "npm run sync:affiliates && npm run build:redirects",
     "build": "astro build",
     "postbuild": "pagefind --site dist --output-subdir _pagefind",
     "preview": "astro preview"
