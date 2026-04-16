@@ -148,10 +148,17 @@ const websiteLd = {
 <body>
 
   <!-- NAV -->
-  <nav class="site-nav">
+  <nav class="site-nav" data-nav-open="false">
     <div class="nav-inner">
       <SiteLogo variant="header" />
-      <ul class="nav-links">
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="17" x2="20" y2="17" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="primary-nav">
         <li><a href="/reviews" data-astro-prefetch>Reviews</a></li>
         <li><a href="/comparisons" data-astro-prefetch>Comparisons</a></li>
         <li><a href="/guides" data-astro-prefetch>Guides</a></li>
@@ -160,6 +167,29 @@ const websiteLd = {
       </ul>
     </div>
   </nav>
+
+  <script>
+    function initNavToggle() {
+      const nav = document.querySelector('.site-nav');
+      const btn = nav?.querySelector('.nav-toggle');
+      if (!nav || !btn || btn.dataset.bound === '1') return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', () => {
+        const open = nav.getAttribute('data-nav-open') === 'true';
+        nav.setAttribute('data-nav-open', open ? 'false' : 'true');
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+        btn.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
+      });
+      nav.querySelectorAll('.nav-links a').forEach(a => {
+        a.addEventListener('click', () => {
+          nav.setAttribute('data-nav-open', 'false');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+    initNavToggle();
+    document.addEventListener('astro:page-load', initNavToggle);
+  </script>
 
   <main>
     <slot />
