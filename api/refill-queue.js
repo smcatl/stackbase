@@ -1,4 +1,4 @@
-const GITHUB_REPO = 'smcatl/OperatorStack';
+const GITHUB_REPO = process.env.QUEUE_SOURCE_REPO || 'smcatl/OperatorStack';
 const GITHUB_BRANCH = 'main';
 const MIN_QUEUED = 8;
 const NEW_TOPICS_COUNT = 10;

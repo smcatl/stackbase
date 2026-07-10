@@ -1,4 +1,4 @@
-const GITHUB_REPO = 'smcatl/OperatorStack';
+const GITHUB_REPO = process.env.PUBLISH_TARGET_REPO || (process.env.VERCEL_GIT_REPO_OWNER && process.env.VERCEL_GIT_REPO_SLUG ? `${process.env.VERCEL_GIT_REPO_OWNER}/${process.env.VERCEL_GIT_REPO_SLUG}` : 'smcatl/stackbase');
 const GITHUB_BRANCH = 'main';
 
 const AFFILIATE_PROGRAMS = {
