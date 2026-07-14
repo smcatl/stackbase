@@ -29,6 +29,10 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const fullTitle = pageTitle(title);
 
+// portfolio-analytics site key — env-driven so stacksites-admin can push
+// per-tenant overrides. Falls back to the repo default when unset.
+const paSiteKey = import.meta.env.PUBLIC_ANALYTICS_SITE_KEY || 'sk_stackbase';
+
 const orgLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -128,6 +132,9 @@ const websiteLd = {
       </script>
     </>
   )}
+
+  <!-- portfolio-analytics beacon (self-hosted, complementary to Plausible) -->
+  <script async defer src="https://portfolio-analytics-chi.vercel.app/t.js" data-site={paSiteKey}></script>
 
   <!-- Site-wide structured data -->
   <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
